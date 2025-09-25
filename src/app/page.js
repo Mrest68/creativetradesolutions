@@ -10,7 +10,6 @@ export default function Home() {
   const heroRef = useRef(null);
   const servicesRef = useRef(null);
   const aboutRef = useRef(null);
-  const cursorRef = useRef(null);
   const [heroIndex, setHeroIndex] = useState(0);
 
   const heroSlides = [
@@ -24,12 +23,6 @@ export default function Home() {
     
     const handleMouseMove = (e) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
-      
-      // Custom cursor trail effect
-      if (cursorRef.current) {
-        cursorRef.current.style.left = e.clientX + 'px';
-        cursorRef.current.style.top = e.clientY + 'px';
-      }
     };
 
     const handleScroll = () => {
@@ -106,39 +99,7 @@ export default function Home() {
     return () => observer.disconnect();
   }, []);
 
-  // Mouse trail effect
-  useEffect(() => {
-    // Only run on client side to prevent hydration issues
-    if (typeof window === 'undefined') return;
-    
-    const trail = [];
-    const trailLength = 5;
-
-    const handleMouseMove = (e) => {
-      trail.push({ x: e.clientX, y: e.clientY, time: Date.now() });
-      
-      if (trail.length > trailLength) {
-        trail.shift();
-      }
-
-      // Create trailing particles
-      trail.forEach((point, index) => {
-        const particle = document.createElement('div');
-        particle.className = 'fixed pointer-events-none w-2 h-2 bg-cyan-400/30 rounded-full z-50';
-        particle.style.left = point.x + 'px';
-        particle.style.top = point.y + 'px';
-        particle.style.transform = `scale(${(index + 1) / trailLength})`;
-        document.body.appendChild(particle);
-
-        setTimeout(() => {
-          particle.remove();
-        }, 500);
-      });
-    };
-
-    document.addEventListener('mousemove', handleMouseMove);
-    return () => document.removeEventListener('mousemove', handleMouseMove);
-  }, [])
+  
 
   // Form handling
   // Hero carousel auto-rotate
@@ -174,20 +135,12 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen text-white bg-black">
-      {/* Advanced cursor follower */}
-      <div 
-        ref={cursorRef}
-        className="fixed w-8 h-8 bg-gradient-to-r from-cyan-400/30 to-purple-400/30 rounded-full pointer-events-none z-50 transition-all duration-200 ease-out backdrop-blur-sm border border-cyan-400/20"
-        style={{
-          transform: `scale(${isLoaded ? 1 : 0})`,
-          boxShadow: '0 0 20px rgba(6, 182, 212, 0.3)'
-        }}
-      />
+      {/* Advanced cursor follower removed */}
       
       {/* Hero Section */}
       <section 
         ref={heroRef}
-        className="relative min-h-screen flex items-center justify-center overflow-hidden"
+        className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white"
       >
         {/* Dynamic parallax background */}
         <div className="absolute inset-0 -z-10">
@@ -204,13 +157,10 @@ export default function Home() {
             />
           ))}
 
-          {/* Dark overlay for legibility (darker tint) */}
-          <div className="absolute inset-0 bg-black/80 pointer-events-none"></div>
+          {/* White overlay for hero background */}
+          <div className="absolute inset-0 bg-white pointer-events-none"></div>
           
-          {/* Interactive floating orbs */}
-          <div className="parallax-slow absolute top-20 left-20 w-72 h-72 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 rounded-full blur-3xl animate-quantum-levitate"></div>
-          <div className="parallax-medium absolute bottom-20 right-20 w-96 h-96 bg-gradient-to-r from-cyan-500/15 to-pink-500/15 rounded-full blur-3xl animate-cosmic-drift" style={{animationDelay: '1s'}}></div>
-          <div className="parallax-fast absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-r from-pink-500/10 to-purple-500/10 rounded-full blur-3xl animate-portal-spin" style={{animationDelay: '2s'}}></div>
+          {/* Floating orbs removed */}
           
           {/* Matrix rain effect */}
           {[...Array(20)].map((_, i) => {
@@ -268,50 +218,79 @@ export default function Home() {
           }}></div>
         </div>
         
-        {/* Hero content with scroll animations */}
-        <div className={`max-w-7xl mx-auto px-6 text-center transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          
-          <h1 className="text-6xl md:text-9xl font-bold mb-8 leading-tight text-white">
-            Creative Trade
-            <br />
-            Solutions
-          </h1>
-          
-          <p className="text-xl md:text-2xl text-white/70 mb-12 max-w-4xl mx-auto leading-relaxed hover:text-white/90 transition-colors duration-500">
-            Transform your business with cutting-edge marketing strategies and modern digital experiences. 
-            We create spacey, sleek solutions that drive results in the digital cosmos.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            <a 
-              href="#services" 
-              className="group magnetic-element glass px-10 py-5 rounded-full font-semibold text-lg hover:bg-white/20 transition-all duration-500 transform hover:scale-110 hover:shadow-2xl animate-tilt-shaking"
-            >
-              <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-                Explore Services
-              </span>
-              <svg className="inline-block ml-3 w-6 h-6 text-cyan-400 transform group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+  {/* Hero content with scroll animations — two-column */}
+  <div className={`max-w-7xl mx-auto px-6 transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      {/* Left: Header, text, buttons */}
+      <div className="text-left">
+        <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight text-black">
+          Creative <span className="text-cyan-400">Trade</span>
+          <br />
+          Solutions
+        </h1>
+
+        <p className="text-lg md:text-xl text-gray-700 mb-6 max-w-2xl">
+          Transform your business with cutting-edge marketing strategies and modern digital experiences.
+          We build sleek, high-converting websites and campaigns that drive measurable results.
+        </p>
+
+        {/* Quick checklist highlights */}
+        <div className="mb-6">
+          <ul className="flex flex-col gap-4 text-sm text-gray-600">
+            <li className="flex items-center gap-2">
+              <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
               </svg>
-            </a>
-            
-            <a 
-              href="#contact" 
-              className="group magnetic-element bg-gradient-to-r from-cyan-500 to-purple-500 px-10 py-5 rounded-full font-semibold text-lg hover:from-cyan-400 hover:to-purple-400 transition-all duration-500 transform hover:scale-110 shadow-lg hover:shadow-2xl relative overflow-hidden"
-            >
-              <span className="relative z-10">Start Project</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <svg className="inline-block ml-3 w-6 h-6 transform group-hover:translate-x-2 transition-transform duration-300 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              <span>Fast turnaround</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
               </svg>
-            </a>
-          </div>
+              <span>SEO & conversion focused</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+              </svg>
+              <span>Dedicated support</span>
+            </li>
+          </ul>
         </div>
+
+        <div className="flex flex-col sm:flex-row gap-4">
+          <a
+            href="#services"
+            className="inline-flex items-center gap-3 px-8 py-4 rounded-none font-semibold text-lg bg-black text-white border-2 border-black hover:bg-gray-900 transition"
+          >
+            Explore Services
+          </a>
+
+          <a
+            href="#contact"
+            className="inline-flex items-center gap-3 px-8 py-4 rounded-none font-semibold text-lg bg-white text-black border-2 border-black hover:bg-gray-100 transition"
+          >
+            Start Project
+          </a>
+        </div>
+      </div>
+
+      {/* Right: Image (carpenter.jpg) */}
+      <div className="w-full flex items-center justify-center">
+        <div className="w-full h-80 md:h-96 lg:h-[34rem] rounded-lg overflow-hidden border border-gray-200">
+          <Image src="/carpenter.jpg" alt="Carpenter at work" width={1200} height={800} className="w-full h-full object-cover" />
+        </div>
+      </div>
+    </div>
+  </div>
         
-        {/* Interactive floating elements */}
-        <div className="absolute top-1/4 left-10 w-6 h-6 bg-cyan-400/40 rounded-full animate-parallax-float cursor-pointer hover:scale-150 transition-transform duration-300"></div>
-        <div className="absolute top-3/4 right-10 w-8 h-8 bg-purple-400/30 rounded-full animate-parallax-float cursor-pointer hover:scale-150 transition-transform duration-300" style={{animationDelay: '1s'}}></div>
-        <div className="absolute bottom-1/4 left-1/3 w-4 h-4 bg-pink-400/50 rounded-full animate-parallax-float cursor-pointer hover:scale-150 transition-transform duration-300" style={{animationDelay: '2s'}}></div>
+  {/* Small floating elements removed */}
+        {/* Downward arrow indicator (just the triangle face) */}
+        <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20 pointer-events-none">
+          <svg className="w-6 h-6 text-gray-500" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M12 16.5l-6-6h12l-6 6z" />
+          </svg>
+        </div>
       </section>
       {/* Portfolio Carousel Section */}
       <section className="scroll-hidden relative py-32 px-6 overflow-hidden">
@@ -382,7 +361,7 @@ export default function Home() {
                       
                       {/* Project Info */}
                       <div className="p-6">
-                        <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors">
+                        <h3 className="text-2xl font-bold text-black mb-2 group-hover:text-cyan-300 transition-colors">
                           {project.title}
                         </h3>
                         <p className="text-white/70 mb-4">
@@ -448,7 +427,7 @@ export default function Home() {
                       
                       {/* Project Info */}
                       <div className="p-6">
-                        <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors">
+                        <h3 className="text-2xl font-bold text-black mb-2 group-hover:text-cyan-300 transition-colors">
                           {project.title}
                         </h3>
                         <p className="text-white/70 mb-4">
@@ -477,14 +456,14 @@ export default function Home() {
       <section 
         id="services" 
         ref={servicesRef}
-        className="scroll-hidden relative py-32 px-6"
+        className="scroll-hidden relative py-32 px-6 bg-gray-50"
       >
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white">
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-black">
               What We Create
             </h2>
-            <p className="text-xl text-white/70 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
               From stunning websites to comprehensive marketing strategies, we deliver solutions that are both beautiful and effective.
             </p>
           </div>
@@ -494,17 +473,14 @@ export default function Home() {
               {
                 title: "Web Development",
                 description: "Modern, responsive websites built with cutting-edge technology and sleek design. Integrated with powerful email and phone number funnels to capture leads effectively.",
-                color: "from-cyan-500 to-blue-500"
               },
               {
                 title: "Targeted Marketing",
                 description: "Data-driven marketing strategies that drive growth and maximize ROI. A/B testing, analytics, and optimization to ensure success on Google and Facebook platforms.",
-                color: "from-purple-500 to-pink-500"
               },
               {
                 title: "Social Media Management",
                 description: "Comprehensive social media strategies that enhance brand visibility and engagement. Make your business stand out on platforms like Instagram and Facebook for credibility.",
-                color: "from-green-500 to-teal-500"
               }
             ].map((service, index) => (
               <div
@@ -515,10 +491,10 @@ export default function Home() {
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                
-                <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-cyan-300 transition-colors">
+                <h3 className="text-2xl font-bold mb-4 text-black group-hover:text-black">
                   {service.title}
                 </h3>
-                <p className="text-white/70 leading-relaxed mb-6">
+                <p className="text-gray-900 leading-relaxed mb-6">
                   {service.description}
                 </p>
                 <div className={`w-full h-1 bg-gradient-to-r ${service.color} rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left`}></div>
@@ -528,118 +504,61 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Vertical Process Animation Chain */}
-      <section className="relative py-20 px-6 overflow-hidden">
-        <div className="max-w-4xl mx-auto">
-          {/* Section Header */}
-          <div className="text-center mb-32 animate-on-scroll opacity-0 translate-y-10 transition-all duration-1000 ease-out">
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white">
-              How We Work
-            </h2>
-            <p className="text-xl text-white/70 max-w-3xl mx-auto">
-              Experience our revolutionary step-by-step journey to digital excellence.
-            </p>
-          </div>
+      {/* How We Work — two-column simplified section */}
+      <section id="how" className="relative py-20 px-6 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+            {/* Left: Heading + blurb + CTA */}
+            <div className="space-y-6">
+              <h2 className="text-4xl md:text-6xl font-bold text-black">How We Work</h2>
+              <p className="text-lg text-gray-700 max-w-xl">
+                We partner with you through a focused 4-step process designed to discover your needs, craft a tailored strategy, build delightful experiences, and launch with measurable results.
+              </p>
 
-          {/* Vertical Animation Chain */}
-          <div className="relative">
-            {/* Modern Vertical Connecting Line */}
-            <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-slate-600/30 via-slate-500/50 to-slate-600/30 transform -translate-x-0.5 rounded-full"></div>
-            
-            {/* Enhanced Animated Pulse Line */}
-            <div className="absolute left-1/2 top-0 w-1 h-full bg-gradient-to-b from-transparent via-slate-300/40 to-transparent transform -translate-x-0.5 animate-laser-beam opacity-70 rounded-full"></div>
-            
-            {[
-              {
-                step: "01",
-                title: "Discovery",
-                description: "We dive deep into understanding your business, goals, local market and challenges through comprehensive research and analysis.",
-                icon: "🔍",
-                color: "from-slate-700/40 to-slate-900/60",
-                glowColor: "slate-300",
-                borderColor: "border-slate-400/20 hover:border-slate-300/40"
-              },
-              {
-                step: "02", 
-                title: "Strategy",
-                description: "We craft a tailored strategy that aligns with your objectives and market positioning for maximum impact.",
-                icon: "🎯",
-                color: "from-slate-800/40 to-gray-900/60",
-                glowColor: "slate-300",
-                borderColor: "border-slate-400/20 hover:border-slate-300/40"
-              },
-              {
-                step: "03",
-                title: "Creation",
-                description: "Our experts bring your vision to life with cutting-edge technology and innovative design solutions to bring your business to life.",
-                icon: "⚡",
-                color: "from-gray-700/40 to-slate-900/60",
-                glowColor: "slate-300",
-                borderColor: "border-slate-400/20 hover:border-slate-300/40"
-              },
-              {
-                step: "04",
-                title: "Launch",
-                description: "We deploy, monitor, and optimize for maximum impact, ensuring your success in the digital landscape. Our team is dedicated to your growth. If you win, we win.",
-                icon: "🚀",
-                color: "from-gray-800/40 to-slate-900/60",
-                glowColor: "slate-300",
-                borderColor: "border-slate-400/20 hover:border-slate-300/40"
-              }
-            ].map((process, index) => (
-              <div 
-                key={index}
-                className="relative mb-32 last:mb-0"
-              >
-                {/* Large Process Card */}
-                <div className={`animate-on-scroll opacity-0 translate-y-20 transition-all duration-1000 ease-out ${index % 2 === 0 ? 'ml-auto pl-16' : 'mr-auto pr-16'} max-w-2xl`}
-                     style={{ transitionDelay: `${index * 200}ms` }}>
-                  
-                  <div className={`relative group backdrop-blur-xl bg-slate-900/30 hover:bg-slate-800/40 p-12 rounded-2xl ${process.borderColor} border transition-all duration-700 transform hover:scale-[1.02] hover:-translate-y-2 shadow-2xl hover:shadow-slate-500/20`}>
-                    
-                    {/* Enhanced Glow Effect on Scroll */}
-                    <div className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-to-br ${process.color}`}
-                         style={{
-                           boxShadow: `0 25px 50px -12px rgba(71, 85, 105, 0.25), 0 0 40px rgba(148, 163, 184, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1)`
-                         }}></div>
-                    
-                    {/* Modern Step Number Badge */}
-                    <div className="absolute -top-6 -left-6 w-14 h-14 bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900 rounded-2xl flex items-center justify-center border border-slate-500/30 group-hover:border-slate-400/50 transition-all duration-500 shadow-lg group-hover:shadow-slate-500/30">
-                      <span className={`text-xl font-bold font-['SF_Mono',Monaco,monospace] text-slate-200 group-hover:text-white tracking-tight`}>
-                        {process.step}
-                      </span>
-                    </div>
-                    
-                    {/* Enhanced Icon with Modern Animation */}
-                    <div className="text-7xl mb-8 transform group-hover:scale-110 transition-transform duration-500">
-                      {process.icon}
-                    </div>
-                    
-                    {/* Modern Typography */}
-                    <div className="relative z-10">
-                      <h3 className="text-3xl font-bold mb-6 text-slate-100 font-['SF_Pro_Display',system-ui,sans-serif] tracking-tight leading-tight group-hover:text-white transition-all duration-500">
-                        {process.title}
-                      </h3>
-                      <p className="text-lg text-slate-300 leading-relaxed font-['SF_Pro_Text',system-ui,sans-serif] font-normal group-hover:text-slate-200 transition-colors duration-500">
-                        {process.description}
-                      </p>
-                    </div>
-                    
-                    {/* Animated Border */}
-                    <div className={`absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700`}>
-                      
-                    </div>
+              <div className="flex gap-4 mt-4">
+                <a href="#contact" className="inline-flex items-center px-6 py-3 bg-black text-white border-2 border-black rounded-none font-semibold hover:bg-gray-900 transition">
+                  Start a Project
+                </a>
+                <a href="#services" className="inline-flex items-center px-6 py-3 border-2 border-black text-black rounded-none font-semibold hover:bg-black hover:text-white transition">
+                  View Services
+                </a>
+              </div>
+            </div>
+
+            {/* Right: Steps */}
+            <div className="space-y-6">
+              {[{
+                step: '01',
+                title: 'Discovery',
+                desc: 'We dig into your goals, audience, and existing assets to identify high-impact opportunities.'
+              },{
+                step: '02',
+                title: 'Strategy',
+                desc: 'We design a measurable plan—website, funnels, and marketing—that aligns to revenue objectives.'
+              },{
+                step: '03',
+                title: 'Creation',
+                desc: 'Design and build with a focus on conversion, performance, and brand credibility.'
+              },{
+                step: '04',
+                title: 'Launch & Optimize',
+                desc: 'We deploy, monitor metrics, and iterate to continuously improve results.'
+              }].map((p) => (
+                <div key={p.step} className="flex gap-6 items-start p-6 bg-white rounded-2xl border border-gray-200 shadow-sm">
+                  <div className="w-14 h-14 flex items-center justify-center bg-black text-white font-bold rounded-lg text-lg">
+                    {p.step}
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-black mb-1">{p.title}</h3>
+                    <p className="text-gray-600">{p.desc}</p>
                   </div>
                 </div>
-                
-                {/* Modern Connection Node */}
-                <div className={`absolute top-16 left-1/2 w-8 h-8 bg-gradient-to-br from-slate-600 to-slate-800 rounded-2xl transform -translate-x-4 animate-pulse border border-slate-400/40 shadow-lg`}
-                     style={{ animationDelay: `${index * 0.5}s` }}></div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
+
       {/* About Section */}
       <section 
         id="about"
@@ -651,12 +570,12 @@ export default function Home() {
             {/* Left: Content */}
             <div className={`${isLoaded ? 'animate-slide-in-left' : ''}`}>
               <h2 className="text-4xl md:text-6xl font-bold mb-8 text-white">
-                Innovation
+                
                 <br />
-                Meets Execution
+                Simple. Smart. Effective.
               </h2>
               <p className="text-xl text-white/70 leading-relaxed mb-8">
-                We are a team of passionate creators, strategists, and technologists who believe in the power of great design and smart technology to transform businesses.
+                We dont overcomplicate things. Our focus is on delivering high-impact solutions that drive real business results. No fluff, just effective strategies and beautiful execution.
               </p>
               
               <div className="space-y-6 mb-10">
@@ -668,7 +587,7 @@ export default function Home() {
                   <div key={index} className="flex items-start gap-4">
                    
                     <div>
-                      <h3 className="text-xl font-bold text-white mb-2">{feature.title}</h3>
+                      <h3 className="text-xl font-bold text-black mb-2">{feature.title}</h3>
                       <p className="text-white/70">{feature.desc}</p>
                     </div>
                   </div>
@@ -691,7 +610,7 @@ export default function Home() {
             {/* Right: Visual Element */}
             <div className={`relative ${isLoaded ? 'animate-slide-in-right' : ''}`}>
               <img 
-                src="/stocktech.jpg" 
+                src="/funnel.png" 
                 alt="Creative Trade Solutions Team" 
                 className="w-full h-96 object-cover"
               />
@@ -704,64 +623,34 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 scroll-slide-left">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-              Cutting-Edge Tools
+              Effective Technologies For Results
             </h2>
             <p className="text-xl text-white/70 max-w-2xl mx-auto">
               We use the latest technologies to build fast, scalable, and modern solutions.
             </p>
           </div>
           
-          {/* Technology Icons Carousel */}
-          <div className="relative group">
+          {/* Technology Icons - fixed responsive row */}
+          <div className="relative">
             <div className="overflow-hidden">
-              <div className="flex gap-12 items-center py-8 hover:animation-play-state-paused" style={{
-                animation: 'scroll-carousel 35s linear infinite',
-                width: 'calc(120px * 16)', // 8 items * 2 sets
-                animationPlayState: 'running'
-              }}
-              onMouseEnter={(e) => e.target.style.animationPlayState = 'paused'}
-              onMouseLeave={(e) => e.target.style.animationPlayState = 'running'}
-              >
-                {/* First set */}
+              <div className="flex flex-wrap gap-6 items-center py-8 justify-center">
                 {[
                   { name: "React", icon: "⚛️", color: "from-cyan-400 to-blue-500" },
                   { name: "Next.js", icon: "🔼", color: "from-gray-400 to-gray-600" },
                   { name: "Node.js", icon: "🟢", color: "from-green-400 to-green-600" },
+                  { name: "Wordpress", icon: "🐍", color: "from-yellow-600 to-blue-500" },
+                  { name: "Resender", icon: "☁️", color: "from-blue-400 to-cyan-500" },
                   { name: "Python", icon: "🐍", color: "from-yellow-600 to-blue-500" },
                   { name: "AWS", icon: "☁️", color: "from-blue-400 to-cyan-500" },
                   { name: "Docker", icon: "🐳", color: "from-blue-400 to-cyan-500" },
                   { name: "GraphQL", icon: "🔗", color: "from-pink-400 to-purple-500" },
-                  { name: "MongoDB", icon: "🍃", color: "from-green-400 to-emerald-500" }
                 ].map((tech, index) => (
-                  <div key={`tech1-${index}`} className="flex-shrink-0 w-28 group magnetic-element cursor-pointer">
-                    <div className="glass-card p-6 text-center hover:bg-white/15 transition-all duration-500 transform hover:scale-110 border border-white/10">
-                      <div className="text-4xl mb-3 group-hover:scale-125 transition-transform duration-300">
+                  <div key={`tech-${index}`} className="w-28 flex-shrink-0 group cursor-pointer">
+                    <div className="glass-card p-6 text-center transition-all duration-500 transform hover:scale-105 border border-white/10">
+                      <div className="text-4xl mb-3 transition-transform duration-300">
                         {tech.icon}
                       </div>
-                      <div className={`text-sm font-semibold bg-gradient-to-r ${tech.color} bg-clip-text text-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300`}>
-                        {tech.name}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-                
-                {/* Duplicate set for seamless loop */}
-                {[
-                  { name: "React", icon: "⚛️", color: "from-cyan-400 to-blue-500" },
-                  { name: "Next.js", icon: "🔼", color: "from-gray-400 to-gray-600" },
-                  { name: "Node.js", icon: "🟢", color: "from-green-400 to-green-600" },
-                  { name: "Python", icon: "🐍", color: "from-yellow-600 to-blue-500" },
-                  { name: "AWS", icon: "☁️", color: "from-blue-400 to-cyan-500" },
-                  { name: "Docker", icon: "🐳", color: "from-blue-400 to-cyan-500" },
-                  { name: "GraphQL", icon: "🔗", color: "from-pink-400 to-purple-500" },
-                  { name: "MongoDB", icon: "🍃", color: "from-green-400 to-emerald-500" }
-                ].map((tech, index) => (
-                  <div key={`tech2-${index}`} className="flex-shrink-0 w-28 group magnetic-element cursor-pointer">
-                    <div className="glass-card p-6 text-center hover:bg-white/15 transition-all duration-500 transform hover:scale-110 border border-white/10">
-                      <div className="text-4xl mb-3 group-hover:scale-125 transition-transform duration-300">
-                        {tech.icon}
-                      </div>
-                      <div className={`text-sm font-semibold bg-gradient-to-r ${tech.color} bg-clip-text text-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300`}>
+                      <div className={`text-sm font-semibold bg-gradient-to-r ${tech.color} bg-clip-text text-transparent transition-opacity duration-300`}>
                         {tech.name}
                       </div>
                     </div>
@@ -853,7 +742,7 @@ export default function Home() {
         
         <div className="max-w-6xl mx-auto">
             <div className="text-center mb-20 scroll-slide-left">
-            <h2 className="text-5xl md:text-7xl font-bold mb-8 animate-text-glow text-white">
+            <h2 className="text-5xl md:text-7xl font-bold mb-8  text-white">
               Let&apos;s Create
               <br />
               Something Amazing
@@ -872,7 +761,7 @@ export default function Home() {
                     📧
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-white">Email Us</h3>
+                    <h3 className="text-xl font-bold text-black">Email Us</h3>
                     <p className="text-cyan-300">Adrain@creativetrade.com</p>
                   </div>
                 </div>
@@ -884,7 +773,7 @@ export default function Home() {
                     📱
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-white">Call Us</h3>
+                    <h3 className="text-xl font-bold text-black">Call Us</h3>
                     <p className="text-green-300">+1 (954) 870-8668</p>
                   </div>
                 </div>
@@ -898,7 +787,7 @@ export default function Home() {
                     ⚡
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-white">Response Time</h3>
+                    <h3 className="text-xl font-bold text-black">Response Time</h3>
                     <p style={{color: '#D4AF37'}}>Within 24 hours</p>
                   </div>
                 </div>
@@ -912,7 +801,7 @@ export default function Home() {
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-indigo-500/5 -z-10"></div>
                 
                 <div className="mb-8">
-                  <h3 className="text-3xl font-bold mb-4 bg-gradient-to-r white bg-clip-text text-transparent">
+                  <h3 className="text-3xl font-bold mb-4">
                     Send us a message
                   </h3>
                   <p className="text-white/70">Fill out the form below and we&apos;ll get back to you as soon as possible.</p>
@@ -1038,7 +927,7 @@ export default function Home() {
             </div>
             
             <div>
-              <h3 className="text-xl font-bold text-white mb-6">Services</h3>
+              <h3 className="text-xl font-bold text-black mb-6">Services</h3>
               <ul className="space-y-3">
                 <li><a href="#" className="text-white/70 hover:text-cyan-400 transition-colors">Web Development</a></li>
                 <li><a href="#" className="text-white/70 hover:text-cyan-400 transition-colors">Mobile Apps</a></li>
@@ -1048,7 +937,7 @@ export default function Home() {
             </div>
             
             <div>
-              <h3 className="text-xl font-bold text-white mb-6">Contact</h3>
+              <h3 className="text-xl font-bold text-black mb-6">Contact</h3>
               <ul className="space-y-3">
                 <li className="text-white/70">Adrian@creativetrade.com</li>
                 

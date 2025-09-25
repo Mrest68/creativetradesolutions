@@ -28,8 +28,8 @@ export default function GetStarted() {
       title: "Discovery & Research",
       duration: "3-5 Days",
       icon: "🔍",
-      color: "from-purple-400 to-pink-400",
-      bgGradient: "from-purple-900/20 to-pink-900/20",
+      color: "from-cyan-400 to-pink-400",
+      bgGradient: "from-cyan-900/20 to-pink-900/20",
       description: "Deep dive into your brand, target audience, and market to create a comprehensive project foundation.",
       details: [
         "Brand identity audit and enhancement recommendations",
@@ -107,7 +107,7 @@ export default function GetStarted() {
         'Google Business Profile optimization',
 
       ],
-      color: 'from-purple-400 to-pink-400',
+  color: 'from-cyan-400 to-pink-400',
       popular: true
     },
     {
@@ -120,9 +120,7 @@ export default function GetStarted() {
       features: [
         'Everything in Professional, plus:',
         'Premium SEO services with advanced strategies',
-        'Dedicated account manager',
-        'Custom development solutions',
-        'Priority support & maintenance'
+        
       ],
       color: 'from-yellow-400 to-orange-400',
       popular: false
@@ -153,49 +151,16 @@ export default function GetStarted() {
 
   return (
     <main className="min-h-screen bg-black relative overflow-hidden">
-      {/* Space Black Animated Background */}
+      {/* Space background (glow removed) */}
       <div className="fixed inset-0 -z-10">
         <div className="absolute inset-0 bg-black"></div>
-        
-        {/* Floating Orbs */}
-        <div className="absolute top-20 left-20 w-96 h-96 bg-gradient-to-r from-purple-500/10 to-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-80 h-80 bg-gradient-to-r from-cyan-500/10 to-pink-500/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
-        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-r from-pink-500/5 to-purple-500/5 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
-        
-        {/* Grid Pattern */}
-        <div className="absolute inset-0 opacity-5" style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, cyan 1px, transparent 0)`,
-          backgroundSize: '50px 50px'
-        }}></div>
-        
-        {/* Floating Particles */}
-        {[...Array(30)].map((_, i) => {
-          // Use deterministic values based on index to prevent hydration issues
-          const topPercent = ((i * 37 + 23) % 100);
-          const leftPercent = ((i * 41 + 17) % 100);
-          const delay = ((i * 0.3) % 3);
-          const duration = (2 + ((i * 0.2) % 2));
-          
-          return (
-            <div
-              key={`particle-${i}`}
-              className={`absolute w-1 h-1 bg-cyan-400 rounded-full animate-pulse opacity-30`}
-              style={{
-                top: `${topPercent}%`,
-                left: `${leftPercent}%`,
-                animationDelay: `${delay}s`,
-                animationDuration: `${duration}s`
-              }}
-            />
-          );
-        })}
       </div>
 
       {/* Hero Section */}
       {/* <section className="relative pt-32 pb-20 px-6">
         <div className="max-w-7xl mx-auto text-center">
           <div className="animate-on-scroll opacity-0 translate-y-10 transition-all duration-1000 ease-out">
-            <h1 className="text-5xl lg:text-8xl font-bold mb-8 bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent leading-tight">
+            <h1 className="text-5xl lg:text-8xl font-bold mb-8 bg-gradient-to-r from-cyan-400 via-blue-400 to-pink-400 bg-clip-text text-transparent leading-tight">
               Launch Your Project
             </h1>
             <p className="text-xl lg:text-2xl text-white/80 mb-12 leading-relaxed max-w-4xl mx-auto">
@@ -338,7 +303,7 @@ export default function GetStarted() {
         <div className="max-w-5xl mx-auto">
           <div className="animate-on-scroll opacity-0 translate-y-10 transition-all duration-1000 ease-out">
             <div className="text-center mb-20">
-              <h2 className="text-4xl lg:text-6xl font-bold mb-8 bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+              <h2 className="text-4xl lg:text-6xl font-bold mb-8 text-white">
                 Choose Your Service Package
               </h2>
               <p className="text-xl text-white/70 max-w-3xl mx-auto">
@@ -347,35 +312,31 @@ export default function GetStarted() {
             </div>
             
             {/* Three Service Cards Horizontal */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto items-stretch">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto items-stretch auto-rows-fr">
               {servicePackages.map((pkg, index) => (
                 <div
                   key={pkg.id}
                   className={`group relative p-8 rounded-3xl backdrop-blur-xl border transition-all duration-700 hover:scale-105 flex flex-col h-full ${
-                    pkg.popular 
-                      ? 'border-purple-400/50 lg:scale-110' 
-                      : 'border-gray-600/50'
-                  }`}
+                      pkg.popular 
+                        ? 'border-gray-600/50' 
+                        : 'border-gray-600/50'
+                    }`}
                   style={{
                     background: pkg.popular 
-                      ? `linear-gradient(135deg, rgba(75,85,99,0.8) 0%, rgba(55,65,81,0.9) 100%)`
-                      : `linear-gradient(135deg, rgba(55,65,81,0.7) 0%, rgba(31,41,55,0.8) 100%)`,
-                    boxShadow: pkg.popular 
-                      ? '0 25px 50px rgba(168, 85, 247, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
-                      : '0 25px 50px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05)'
+                      
+                   
                   }}
                 >
                   {/* Popular Badge - Only for popular package */}
                   {pkg.popular && (
                     <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                      <div className="bg-gradient-to-r from-purple-500 to-pink-500 px-6 py-2 rounded-full text-white font-bold text-sm shadow-lg">
+                      <div className="bg-gradient-to-r from-cyan-500 to-pink-500 px-6 py-2 rounded-full text-white font-bold text-sm shadow-lg">
                         Most Popular
                       </div>
                     </div>
                   )}
                   
-                  {/* Glow Effect */}
-                  <div className={`absolute -inset-4 bg-gradient-to-r ${pkg.color} rounded-3xl blur-2xl opacity-20 group-hover:opacity-40 transition-opacity duration-700`}></div>
+                  {/* Glow Effect removed */}
                   
                   <div className="relative z-10 flex flex-col flex-1">
                     {/* Card Header */}
@@ -414,7 +375,7 @@ export default function GetStarted() {
                     </div>
                     
                     {/* Features */}
-                    <div className="space-y-3 mb-8 min-h-[16rem] flex-1 overflow-auto">
+                    <div className="space-y-3 mb-8 flex-1 overflow-auto">
                       {pkg.features.slice(0, 8).map((feature, idx) => (
                         <div key={idx} className="flex items-start gap-2 p-3 rounded-lg bg-gray-700/30 hover:bg-gray-600/40 transition-all duration-300 border border-gray-600/20">
                           <div className={`w-4 h-4 rounded-full bg-gradient-to-r ${pkg.color} flex items-center justify-center flex-shrink-0 mt-0.5`}>
@@ -441,7 +402,7 @@ export default function GetStarted() {
                       rel="noopener noreferrer"
                       className={`mt-auto block w-full px-6 py-4 rounded-xl font-bold text-sm transition-all duration-500 hover:scale-105 transform shadow-xl text-center ${
                         pkg.popular
-                          ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-400 hover:to-pink-400 shadow-purple-500/25'
+                          ? 'bg-gradient-to-r from-gray-600 to-gray-500 text-white hover:from-gray-500 hover:to-gray-400 shadow-gray-500/25'
                           : 'bg-gradient-to-r from-gray-600 to-gray-500 text-white hover:from-gray-500 hover:to-gray-400 shadow-gray-500/25'
                       }`}
                     >
@@ -453,14 +414,12 @@ export default function GetStarted() {
                       </span>
                     </a>
                     
-                    {/* Additional Info - Only for popular package */}
-                    {pkg.popular && (
-                      <div className="text-center mt-4">
-                        <p className="text-white/60 text-xs">
-                          🔒 Secure payment • 💬 Instant setup call • 📈 Results within 30 days
-                        </p>
-                      </div>
-                    )}
+                    {/* Additional Info - shown for all packages */}
+                    <div className="text-center mt-4">
+                      <p className="text-white/60 text-xs">
+                         Secure payment •  setup call •  Results within 30 days
+                      </p>
+                    </div>
                   </div>
                 </div>
               ))}

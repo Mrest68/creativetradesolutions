@@ -1,4 +1,5 @@
 import { Inter, JetBrains_Mono } from "next/font/google";
+import MobileNav from '../components/MobileNav';
 import "./globals.css";
 
 const interFont = Inter({
@@ -54,26 +55,29 @@ export default function RootLayout({ children }) {
         </div>
         
         {/* Modern Navigation */}
-        <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-white/5 backdrop-blur-xl border-b border-white/10">
+        <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-black backdrop-blur-xl border-b border-white/10">
           <nav className="max-w-7xl mx-auto px-6 py-6 ">
-            <div className="flex items-center justify-center">
-             
-              
-              {/* Navigation Links */}
-              <div className="hidden md:flex items-center gap-1 bg-white/5 backdrop-blur-xl rounded-none px-2 py-2 border border-white/10">
-                <a href="/services" className="px-6 py-2 text-white/80 hover:text-white hover:bg-white/10 rounded-none transition-all duration-300 font-medium">Services</a>
-                <a href="/projects" className="px-6 py-2 text-white/80 hover:text-white hover:bg-white/10 rounded-none transition-all duration-300 font-medium">Projects</a>
+            <div className="flex items-center justify-between">
+              {/* Home icon (left) */}
+              <div className="flex items-center">
+                <a href="/" className="inline-flex items-center gap-3 text-white/90 hover:text-white">
+                  <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M3 11.5L12 4l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V11.5z" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </a>
+              </div>
+
+              {/* Navigation Links (center/right) */}
+              <div className="hidden md:flex items-center gap-1 bg-transparent rounded-none px-2 py-2 border border-white/10">
+                <a href="/services" className="px-6 py-2 text-white/80 hover:text-white rounded-none transition-all duration-300 font-medium pb-2 border-b-2 border-transparent hover:border-white">Services</a>
+                <a href="/projects" className="px-6 py-2 text-white/80 hover:text-white rounded-none transition-all duration-300 font-medium pb-2 border-b-2 border-transparent hover:border-white">Projects</a>
                 
-                <a href="/get-started" className="px-6 py-2 text-white/80 hover:text-white hover:bg-white/10 rounded-none transition-all duration-300 font-medium">Get Started</a>
-                <a href="tel:+19548708668" className="px-6 py-2 bg-gradient-to-r from-cyan-500 to-purple-500 text-white rounded-none hover:from-cyan-400 hover:to-purple-400 transition-all duration-300 font-medium shadow-lg">Contact</a>
+                <a href="/get-started" className="px-6 py-2 text-white/80 hover:text-white rounded-none transition-all duration-300 font-medium pb-2 border-b-2 border-transparent hover:border-white">Pricing</a>
+                <a href="/#contact" className="px-6 py-2 text-white/90 rounded-none transition-all duration-300 font-medium pb-2 border-b-2 border-transparent hover:border-white">Contact</a>
               </div>
               
               {/* Mobile Menu Button */}
-              <button className="md:hidden p-2 text-white bg-white/5 rounded-none">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              </button>
+              <MobileNav />
             </div>
           </nav>
         </header>
