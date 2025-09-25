@@ -1,5 +1,6 @@
 import { Inter, JetBrains_Mono } from "next/font/google";
 import MobileNav from '../components/MobileNav';
+import Link from 'next/link';
 import "./globals.css";
 
 const interFont = Inter({
@@ -60,20 +61,20 @@ export default function RootLayout({ children }) {
             <div className="flex items-center justify-between">
               {/* Home icon (left) */}
               <div className="flex items-center">
-                <a href="/" className="inline-flex items-center gap-3 text-white/90 hover:text-white">
+                <Link href="/" className="inline-flex items-center gap-3 text-white/90 hover:text-white">
                   <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <path d="M3 11.5L12 4l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V11.5z" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
-                </a>
+                </Link>
               </div>
 
               {/* Navigation Links (center/right) */}
               <div className="hidden md:flex items-center gap-1 bg-transparent rounded-none px-2 py-2 border border-white/10">
-                <a href="/services" className="px-6 py-2 text-white/80 hover:text-white rounded-none transition-all duration-300 font-medium pb-2 border-b-2 border-transparent hover:border-white">Services</a>
-                <a href="/projects" className="px-6 py-2 text-white/80 hover:text-white rounded-none transition-all duration-300 font-medium pb-2 border-b-2 border-transparent hover:border-white">Projects</a>
+                <Link href="/services" className="px-6 py-2 text-white/80 hover:text-white rounded-none transition-all duration-300 font-medium pb-2 border-b-2 border-transparent hover:border-white">Services</Link>
+                <Link href="/projects" className="px-6 py-2 text-white/80 hover:text-white rounded-none transition-all duration-300 font-medium pb-2 border-b-2 border-transparent hover:border-white">Projects</Link>
                 
-                <a href="/get-started" className="px-6 py-2 text-white/80 hover:text-white rounded-none transition-all duration-300 font-medium pb-2 border-b-2 border-transparent hover:border-white">Pricing</a>
-                <a href="/#contact" className="px-6 py-2 text-white/90 rounded-none transition-all duration-300 font-medium pb-2 border-b-2 border-transparent hover:border-white">Contact</a>
+                <Link href="/get-started" className="px-6 py-2 text-white/80 hover:text-white rounded-none transition-all duration-300 font-medium pb-2 border-b-2 border-transparent hover:border-white">Pricing</Link>
+                <Link href="/#contact" className="px-6 py-2 text-white/90 rounded-none transition-all duration-300 font-medium pb-2 border-b-2 border-transparent hover:border-white">Contact</Link>
               </div>
               
               {/* Mobile Menu Button */}

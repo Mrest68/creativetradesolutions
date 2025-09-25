@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from "react";
+import Link from 'next/link';
 
 export default function ServicesPage() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -170,7 +171,7 @@ export default function ServicesPage() {
             
             <p className="text-xl md:text-2xl text-white/70 mb-12 max-w-4xl mx-auto leading-relaxed">
               Transform your digital presence with our comprehensive suite of services. 
-              From stunning websites to powerful marketing campaigns, we've got you covered.
+              From stunning websites to powerful marketing campaigns, we&apos;ve got you covered.
             </p>
           </div>
         </div>
@@ -326,33 +327,27 @@ export default function ServicesPage() {
             </h2>
             
             <p className="text-xl text-white/70 mb-12 max-w-2xl mx-auto">
-              Let's discuss how our services can help you achieve your digital goals and drive real results.
+              Let&apos;s discuss how our services can help you achieve your digital goals and drive real results.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              <a 
-                href="/#contact" 
-                className="group glass px-12 py-5 rounded-full font-bold text-lg hover:bg-white/20 transition-all duration-500 transform hover:scale-110 hover:shadow-2xl"
-              >
+              <Link href="/#contact" className="group glass px-12 py-5 rounded-full font-bold text-lg hover:bg-white/20 transition-all duration-500 transform hover:scale-110 hover:shadow-2xl">
                 <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
                   Get Started Today
                 </span>
                 <svg className="inline-block ml-3 w-6 h-6 text-cyan-400 transform group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
-              </a>
+              </Link>
               
-              <a 
-                href="/#portfolio" 
-                className="group magnetic-element bg-gradient-to-r from-cyan-500 to-purple-500 px-12 py-5 rounded-full font-bold text-lg hover:from-cyan-400 hover:to-purple-400 transition-all duration-500 transform hover:scale-110 shadow-lg hover:shadow-2xl relative overflow-hidden"
-              >
+              <Link href="/#portfolio" className="group magnetic-element bg-gradient-to-r from-cyan-500 to-purple-500 px-12 py-5 rounded-full font-bold text-lg hover:from-cyan-400 hover:to-purple-400 transition-all duration-500 transform hover:scale-110 shadow-lg hover:shadow-2xl relative overflow-hidden">
                 <span className="relative z-10">View Our Work</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <svg className="inline-block ml-3 w-6 h-6 transform group-hover:translate-x-2 transition-transform duration-300 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                 </svg>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
