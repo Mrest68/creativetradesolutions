@@ -1050,9 +1050,9 @@ export default function Home() {
             <div>
               <h3 className="text-xl font-bold text-white mb-6">Contact</h3>
               <ul className="space-y-3">
-                <li className="text-white/70">hello@creativetrade.com</li>
-                <li className="text-white/70">+1 (555) 123-4567</li>
-                <li className="text-white/70">San Francisco, CA</li>
+                <li className="text-white/70">Adrian@creativetrade.com</li>
+                
+                
               </ul>
             </div>
           </div>

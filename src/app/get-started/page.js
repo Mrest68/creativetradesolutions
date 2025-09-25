@@ -347,11 +347,11 @@ export default function GetStarted() {
             </div>
             
             {/* Three Service Cards Horizontal */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto items-stretch">
               {servicePackages.map((pkg, index) => (
                 <div
                   key={pkg.id}
-                  className={`group relative p-8 rounded-3xl backdrop-blur-xl border transition-all duration-700 hover:scale-105 ${
+                  className={`group relative p-8 rounded-3xl backdrop-blur-xl border transition-all duration-700 hover:scale-105 flex flex-col h-full ${
                     pkg.popular 
                       ? 'border-purple-400/50 lg:scale-110' 
                       : 'border-gray-600/50'
@@ -377,7 +377,7 @@ export default function GetStarted() {
                   {/* Glow Effect */}
                   <div className={`absolute -inset-4 bg-gradient-to-r ${pkg.color} rounded-3xl blur-2xl opacity-20 group-hover:opacity-40 transition-opacity duration-700`}></div>
                   
-                  <div className="relative z-10">
+                  <div className="relative z-10 flex flex-col flex-1">
                     {/* Card Header */}
                     <div className="text-center mb-6 pb-6 border-b border-gray-600/50">
                       <div className="mb-4">
@@ -414,7 +414,7 @@ export default function GetStarted() {
                     </div>
                     
                     {/* Features */}
-                    <div className="space-y-3 mb-8 min-h-[16rem]">
+                    <div className="space-y-3 mb-8 min-h-[16rem] flex-1 overflow-auto">
                       {pkg.features.slice(0, 8).map((feature, idx) => (
                         <div key={idx} className="flex items-start gap-2 p-3 rounded-lg bg-gray-700/30 hover:bg-gray-600/40 transition-all duration-300 border border-gray-600/20">
                           <div className={`w-4 h-4 rounded-full bg-gradient-to-r ${pkg.color} flex items-center justify-center flex-shrink-0 mt-0.5`}>
@@ -439,7 +439,7 @@ export default function GetStarted() {
                       href={pkg.stripeLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`block w-full px-6 py-4 rounded-xl font-bold text-sm transition-all duration-500 hover:scale-105 transform shadow-xl text-center ${
+                      className={`mt-auto block w-full px-6 py-4 rounded-xl font-bold text-sm transition-all duration-500 hover:scale-105 transform shadow-xl text-center ${
                         pkg.popular
                           ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-400 hover:to-pink-400 shadow-purple-500/25'
                           : 'bg-gradient-to-r from-gray-600 to-gray-500 text-white hover:from-gray-500 hover:to-gray-400 shadow-gray-500/25'
