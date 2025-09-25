@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from "react";
+import Link from 'next/link';
 
 export default function ProjectsPage() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -43,61 +44,57 @@ export default function ProjectsPage() {
       id: 1,
       title: "Camino Concepts",
       category: "Home Remodeling/Handyman Services",
-      description: "A revolutionary e-commerce platform featuring AI-powered recommendations, seamless checkout experience, and advanced inventory management. Built with cutting-edge technologies to deliver exceptional performance and user experience.",
-      technologies: ["Next.js", "React", "Node.js", "MongoDB", "Stripe", "AWS", "Redis"],
-      results: [
-        "300% increase in conversion rates",
-        "50% reduction in page load times",
-        "99.9% uptime reliability",
-        "$2M+ in revenue generated"
-      ],
+      description: "A complete online makeover for a home remodeling business, including a sleek website with portfolio showcase, SEO optimization, and integrated booking system to drive customer engagement and conversions.",
+      technologies: ["Next.js", "React", "Resender", , "Stripe","Facebook Ads", "Google Ads"],
+     
       color: "from-purple-400 to-pink-400",
-      bgGradient: "from-purple-900/20 to-pink-900/20"
+      bgGradient: "from-purple-900/20 to-pink-900/20",
+      image: "web1.jpg",
+      review: "Professional, creative, and results-driven. They delivered exactly what we needed to scale our business and add some professionalism to our brand.",
+      clientName: "Pablo",
+      clientTitle: "Owner, Camino Concepts"
     },
     {
       id: 2,
       title: "Lalos Carpentry",
       category: "Custom Carpentry Services",
-      description: "Complete digital transformation project including brand redesign, SEO optimization, social media strategy, and performance marketing campaigns that skyrocketed client visibility and engagement.",
-      technologies: ["Google Analytics", "Google Ads", "Facebook Ads", "SEO Tools", "Adobe Creative", "Figma"],
-      results: [
-        "450% increase in organic traffic",
-        "280% growth in lead generation",
-        "150% improvement in ROAS",
-        "Top 3 search rankings achieved"
-      ],
+      description: "The attention to detail and modern approach made all the difference. Highly recommend their services. They represented us well and made us look very professional.",
+      technologies: ["Google Analytics", "Google Ads", "Facebook Ads", "SEO Tools", "Adobe Creative", "Figma", "Next.js", "React", "Resender", , "Stripe"],
+     
       color: "from-blue-400 to-cyan-400",
-      bgGradient: "from-blue-900/20 to-cyan-900/20"
+      bgGradient: "from-blue-900/20 to-cyan-900/20",
+      image: "web3.jpg",
+      review: "Working with Creative Trade Solutions was the best investment we made for our carpentry business. Our bookings doubled and we're now the go-to custom carpentry service in our area. Professional work!",
+      clientName: "Lalos",
+      clientTitle: "Master Carpenter, Lalos Carpentry"
     },
     {
       id: 3,
       title: "Novus Remodeling",
       category: "Bathroom and home remodeling services",
-      description: "Innovative financial management app with AI-powered insights, real-time portfolio tracking, and secure banking integration. Features advanced data visualization and intuitive user interface design.",
-      technologies: ["React Native", "TypeScript", "Firebase", "Redux", "Chart.js", "Plaid API"],
-      results: [
-        "500K+ active users worldwide",
-        "4.9/5 App Store rating",
-        "Featured in App Store",
-        "25% increase in user savings"
-      ],
+      description: "Creative Trade Solutions transformó por completo nuestra presencia digital. Nos ayudó no solo a captar nuevos clientes potenciales, sino también a convertirlos en clientes.",
+      technologies: ["Next.js", "React", "Resender", , "Stripe"],
+      
       color: "from-green-400 to-emerald-400",
-      bgGradient: "from-green-900/20 to-emerald-900/20"
+      bgGradient: "from-green-900/20 to-emerald-900/20",
+      image: "web2.jpg",
+      review: "The team at Creative Trade Solutions exceeded all our expectations. Our new website looks incredible and we've seen a 400% increase in consultation requests. They really understand the remodeling industry!",
+      clientName: "Manuel",
+      clientTitle: "Owner, Novus Remodeling"
     },
     {
       id: 4,
-      title: "CloudSync SaaS Platform",
-      category: "Enterprise Solution",
-      description: "Enterprise-grade cloud synchronization platform with advanced security, real-time collaboration features, and scalable architecture. Designed to handle millions of users with enterprise-level reliability.",
-      technologies: ["Vue.js", "Python", "Docker", "Kubernetes", "PostgreSQL", "Redis", "AWS"],
-      results: [
-        "10M+ files synchronized daily",
-        "Enterprise clients onboarded",
-        "99.99% data integrity maintained",
-        "50% reduction in operational costs"
-      ],
+      title: "Storm Pros Florida",
+      category: "Roofing | Impact Doors & Windows",
+      description: "Boosted the scale and reach of a leading roofing and impact windows company through a comprehensive digital overhaul, including a modern website, SEO strategies, and targeted marketing campaigns.",
+      technologies: ["Next.js", "React", "Resender", "Stripe", "Facebook Ads", "Google Ads"],
+      
       color: "from-yellow-600 to-yellow-500",
-      bgGradient: "from-yellow-900/20 to-yellow-800/20"
+      bgGradient: "from-yellow-900/20 to-yellow-800/20",
+      image: "web4.png",
+      review: "Creative Trade Solutions helped us become the top roofing company in South Florida. Their digital marketing strategies brought in over $2M in new business this year alone. Absolutely phenomenal results!",
+      clientName: "Santiago Escobar",
+      clientTitle: "CEO, Storm Pros Florida"
     }
   ];
 
@@ -123,23 +120,31 @@ export default function ProjectsPage() {
         }}></div>
         
         {/* Floating Geometric Shapes */}
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={`shape-${i}`}
-            className={`absolute animate-cosmic-drift ${
-              i % 4 === 0 ? 'w-2 h-2 bg-cyan-400/30 rounded-full' : 
-              i % 4 === 1 ? 'w-3 h-3 bg-purple-400/30 rotate-45' : 
-              i % 4 === 2 ? 'w-1 h-6 bg-pink-400/30 rounded-full' :
-              'w-4 h-1 bg-emerald-400/30 rounded-full'
-            }`}
-            style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 10}s`,
-              animationDuration: `${10 + Math.random() * 10}s`
-            }}
-          />
-        ))}
+        {[...Array(20)].map((_, i) => {
+          // Use deterministic values based on index to prevent hydration issues
+          const topPercent = ((i * 37 + 23) % 100);
+          const leftPercent = ((i * 41 + 17) % 100);
+          const delay = ((i * 0.5) % 10);
+          const duration = (10 + ((i * 0.5) % 10));
+          
+          return (
+            <div
+              key={`shape-${i}`}
+              className={`absolute animate-cosmic-drift ${
+                i % 4 === 0 ? 'w-2 h-2 bg-cyan-400/30 rounded-full' : 
+                i % 4 === 1 ? 'w-3 h-3 bg-purple-400/30 rotate-45' : 
+                i % 4 === 2 ? 'w-1 h-6 bg-pink-400/30 rounded-full' :
+                'w-4 h-1 bg-emerald-400/30 rounded-full'
+              }`}
+              style={{
+                top: `${topPercent}%`,
+                left: `${leftPercent}%`,
+                animationDelay: `${delay}s`,
+                animationDuration: `${duration}s`
+              }}
+            />
+          );
+        })}
         
         {/* Moving Light Rays */}
         <div className="absolute inset-0 opacity-20">
@@ -201,47 +206,33 @@ export default function ProjectsPage() {
                          }}>
                       
                       {/* Background Gradient */}
-                      <div className={`absolute inset-0 bg-gradient-to-br ${project.bgGradient} opacity-40 group-hover:opacity-60 transition-opacity duration-700`}></div>
+                      <img src={project.image} alt="Project Background" className="absolute inset-0 w-full h-full object-cover" />
                       
-                      {/* Animated Grid Overlay */}
-                      <div className="absolute inset-0 opacity-20" style={{
-                        backgroundImage: `
-                          linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-                          linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
-                        `,
-                        backgroundSize: '30px 30px',
-                        animation: 'gridMove 20s linear infinite'
-                      }}></div>
                       
                       {/* Project Preview Content */}
-                      <div className="relative z-10 h-full flex flex-col items-center justify-center text-center p-8 group-hover:scale-105 transition-transform duration-700">
-                        <div className="text-6xl mb-6 opacity-70 filter drop-shadow-2xl">🎨</div>
-                        <h4 className={`text-2xl font-bold mb-3 bg-gradient-to-r ${project.color} bg-clip-text text-transparent`}>
-                          {project.title}
-                        </h4>
-                        <p className="text-white/60 text-lg mb-4">Live Preview</p>
-                        <div className="flex flex-wrap gap-2 justify-center">
-                          {project.technologies.slice(0, 3).map((tech, idx) => (
-                            <span key={idx} className="px-3 py-1 rounded-full text-xs font-medium bg-white/10 text-white/70 border border-white/20">
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
+                      
                       
                       {/* Floating Particles */}
-                      {[...Array(12)].map((_, i) => (
-                        <div
-                          key={`particle-${index}-${i}`}
-                          className={`absolute w-1 h-1 bg-white rounded-full animate-pulse opacity-40`}
-                          style={{
-                            top: `${10 + Math.random() * 80}%`,
-                            left: `${10 + Math.random() * 80}%`,
-                            animationDelay: `${Math.random() * 3}s`,
-                            animationDuration: `${2 + Math.random() * 2}s`
-                          }}
-                        />
-                      ))}
+                      {[...Array(12)].map((_, i) => {
+                        // Use deterministic values based on project index and particle index
+                        const topPercent = (10 + ((index * 11 + i * 19 + 7) % 80));
+                        const leftPercent = (10 + ((index * 13 + i * 23 + 11) % 80));
+                        const delay = ((index * 0.3 + i * 0.25) % 3);
+                        const duration = (2 + ((index * 0.2 + i * 0.15) % 2));
+                        
+                        return (
+                          <div
+                            key={`particle-${index}-${i}`}
+                            className={`absolute w-1 h-1 bg-white rounded-full animate-pulse opacity-40`}
+                            style={{
+                              top: `${topPercent}%`,
+                              left: `${leftPercent}%`,
+                              animationDelay: `${delay}s`,
+                              animationDuration: `${duration}s`
+                            }}
+                          />
+                        );
+                      })}
                       
                       {/* Hover Overlay */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
@@ -284,44 +275,36 @@ export default function ProjectsPage() {
                       </div>
                     </div>
                     
-                    {/* Project Results */}
-                    <div>
-                      <h4 className="text-white/60 text-sm font-medium uppercase tracking-wider mb-6">Key Results</h4>
-                      <div className="space-y-4">
-                        {project.results.map((result, idx) => (
-                          <div key={idx} className={`group relative overflow-hidden p-5 rounded-2xl backdrop-blur-sm border border-white/20 hover:border-white/40 transition-all duration-500 hover:scale-105`}
-                               style={{
-                                 background: `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)`,
-                                 boxShadow: '0 8px 25px rgba(0, 0, 0, 0.2)'
-                               }}>
-                            <div className={`absolute inset-0 bg-gradient-to-r ${project.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}></div>
-                            <div className="relative z-10 flex items-center gap-4">
-                              <div className={`w-3 h-3 rounded-full bg-gradient-to-r ${project.color} shadow-lg animate-pulse`}
-                                   style={{
-                                     boxShadow: `0 0 15px rgba(139, 92, 246, 0.6)`
-                                   }}></div>
-                              <span className="text-white/90 font-semibold text-lg group-hover:text-white transition-colors duration-300">{result}</span>
+                    
+                    
+                    {/* Client Review */}
+                    <div className="pt-4">
+                      <div className={`relative overflow-hidden p-6 rounded-2xl backdrop-blur-sm border border-white/20 transition-all duration-500`}
+                           style={{
+                             background: `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)`,
+                             boxShadow: '0 8px 25px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
+                           }}>
+                        <div className={`absolute inset-0 bg-gradient-to-r ${project.color} opacity-10`}></div>
+                        <div className="relative z-10">
+                          <div className="flex items-start gap-4 mb-4">
+                            <div className="flex text-yellow-400 text-xl">
+                              {'★'.repeat(5)}
                             </div>
                           </div>
-                        ))}
+                          <blockquote className="text-white/90 text-lg italic mb-4 leading-relaxed">
+                            &quot;{project.review}&quot;
+                          </blockquote>
+                          <div className="flex items-center gap-3">
+                            <div className={`w-10 h-10 rounded-full bg-gradient-to-r ${project.color} flex items-center justify-center text-white font-bold`}>
+                              {project.clientName.charAt(0)}
+                            </div>
+                            <div>
+                              <div className="text-white font-semibold">{project.clientName}</div>
+                              <div className="text-white/60 text-sm">{project.clientTitle}</div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                    
-                    {/* CTA Button */}
-                    <div className="pt-4">
-                      <button className={`group relative overflow-hidden px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-500 hover:scale-105 border border-white/30 hover:border-white/50`}
-                              style={{
-                                background: `linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 100%)`,
-                                boxShadow: '0 8px 25px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
-                              }}>
-                        <div className={`absolute inset-0 bg-gradient-to-r ${project.color} opacity-0 group-hover:opacity-20 transition-opacity duration-500`}></div>
-                        <span className={`relative z-10 bg-gradient-to-r ${project.color} bg-clip-text text-transparent font-bold flex items-center gap-3`}>
-                          View Case Study
-                          <svg className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                          </svg>
-                        </span>
-                      </button>
                     </div>
                   </div>
                 </div>
@@ -344,19 +327,19 @@ export default function ProjectsPage() {
             </h2>
             
             <p className="text-xl text-white/70 mb-12 max-w-2xl mx-auto">
-              Let's create something amazing together. Your project could be the next success story in our portfolio.
+              Let&apos;s create something amazing together. Your project could be the next success story in our portfolio.
             </p>
             
-            <a 
+            <Link 
               href="/#contact" 
               className="group inline-flex items-center gap-3 bg-gradient-to-r from-cyan-500 to-purple-500 px-12 py-5 rounded-full font-bold text-lg hover:from-cyan-400 hover:to-purple-400 transition-all duration-500 transform hover:scale-110 shadow-lg hover:shadow-2xl relative overflow-hidden"
             >
-              <span className="relative z-10">Let's Collaborate</span>
+              <span className="relative z-10">Let&apos;s Collaborate</span>
               <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <svg className="inline-block w-6 h-6 transform group-hover:translate-x-2 transition-transform duration-300 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
-            </a>
+            </Link>
           </div>
         </div>
       </section>

@@ -108,6 +108,9 @@ export default function Home() {
 
   // Mouse trail effect
   useEffect(() => {
+    // Only run on client side to prevent hydration issues
+    if (typeof window === 'undefined') return;
+    
     const trail = [];
     const trailLength = 5;
 
@@ -210,37 +213,53 @@ export default function Home() {
           <div className="parallax-fast absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-r from-pink-500/10 to-purple-500/10 rounded-full blur-3xl animate-portal-spin" style={{animationDelay: '2s'}}></div>
           
           {/* Matrix rain effect */}
-          {[...Array(20)].map((_, i) => (
-            <div
-              key={`matrix-${i}`}
-              className="absolute animate-matrix-rain text-cyan-400 text-xs opacity-30"
-              style={{
-                left: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 3}s`,
-                animationDuration: `${3 + Math.random() * 2}s`
-              }}
-            >
-              {String.fromCharCode(0x30A0 + Math.random() * 96)}
-            </div>
-          ))}
+          {[...Array(20)].map((_, i) => {
+            // Use deterministic values based on index to avoid hydration mismatch
+            const leftPos = (i * 37 + 23) % 100; // Pseudo-random but deterministic
+            const delay = (i * 0.3) % 3;
+            const duration = 3 + (i * 0.2) % 2;
+            const charCode = 0x30A0 + (i * 7) % 96;
+            
+            return (
+              <div
+                key={`matrix-${i}`}
+                className="absolute animate-matrix-rain text-cyan-400 text-xs opacity-30"
+                style={{
+                  left: `${leftPos}%`,
+                  animationDelay: `${delay}s`,
+                  animationDuration: `${duration}s`
+                }}
+              >
+                {String.fromCharCode(charCode)}
+              </div>
+            );
+          })}
           
           {/* Floating geometric shapes */}
-          {[...Array(15)].map((_, i) => (
-            <div
-              key={`shape-${i}`}
-              className={`absolute animate-cosmic-drift ${
-                i % 3 === 0 ? 'w-4 h-4 bg-cyan-400/20 rotate-45' : 
-                i % 3 === 1 ? 'w-6 h-6 bg-purple-400/20 rounded-full' : 
-                'w-3 h-8 bg-pink-400/20'
-              }`}
-              style={{
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 8}s`,
-                animationDuration: `${8 + Math.random() * 4}s`
-              }}
-            />
-          ))}
+          {[...Array(15)].map((_, i) => {
+            // Use deterministic values based on index to avoid hydration mismatch
+            const topPos = (i * 43 + 17) % 100;
+            const leftPos = (i * 59 + 31) % 100;
+            const delay = (i * 0.8) % 8;
+            const duration = 8 + (i * 0.4) % 4;
+            
+            return (
+              <div
+                key={`shape-${i}`}
+                className={`absolute animate-cosmic-drift ${
+                  i % 3 === 0 ? 'w-4 h-4 bg-cyan-400/20 rotate-45' : 
+                  i % 3 === 1 ? 'w-6 h-6 bg-purple-400/20 rounded-full' : 
+                  'w-3 h-8 bg-pink-400/20'
+                }`}
+                style={{
+                  top: `${topPos}%`,
+                  left: `${leftPos}%`,
+                  animationDelay: `${delay}s`,
+                  animationDuration: `${duration}s`
+                }}
+              />
+            );
+          })}
           
           {/* Dynamic grid pattern */}
           <div className="absolute inset-0 opacity-10" style={{
@@ -642,14 +661,12 @@ export default function Home() {
               
               <div className="space-y-6 mb-10">
                 {[
-                  { icon: "", title: "Strategic Approach", desc: "Every project starts with a deep understanding of your goals." },
-                  { icon: "", title: "Cutting-Edge Tech", desc: "We use the latest technologies and frameworks for optimal results." },
-                  { icon: "", title: "Results-Driven", desc: "Our focus is on delivering measurable business outcomes." }
+                  {  title: "Strategic Approach", desc: "Every project starts with a deep understanding of your goals." },
+                  {  title: "Cutting-Edge Tech", desc: "We use the latest technologies and frameworks for optimal results." },
+                  {  title: "Results-Driven", desc: "Our focus is on delivering measurable business outcomes." }
                 ].map((feature, index) => (
                   <div key={index} className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-pink-500 to-blue-500 flex items-center justify-center text-xl">
-                      {feature.icon}
-                    </div>
+                   
                     <div>
                       <h3 className="text-xl font-bold text-white mb-2">{feature.title}</h3>
                       <p className="text-white/70">{feature.desc}</p>
@@ -658,12 +675,12 @@ export default function Home() {
                 ))}
               </div>
               
-              <a 
+                  <a 
                 href="#contact" 
                 className="group glass px-8 py-4 rounded-full font-semibold text-lg hover:bg-white/10 transition-all duration-300 transform hover:scale-105"
               >
                 <span className="bg-gradient-to-r from-pink-400 to-blue-400 bg-clip-text text-transparent">
-                  Let's Work Together
+                  Let&apos;s Work Together
                 </span>
                 <svg className="inline-block ml-2 w-5 h-5 text-pink-400 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -673,33 +690,11 @@ export default function Home() {
             
             {/* Right: Visual Element */}
             <div className={`relative ${isLoaded ? 'animate-slide-in-right' : ''}`}>
-              <div className="relative">
-                {/* Background decoration */}
-                <div className="absolute -top-10 -left-10 w-full h-full bg-gradient-to-r from-pink-500/20 to-blue-500/20 rounded-3xl rotate-6"></div>
-                
-                {/* Main card */}
-                <div className="relative glass-card p-8">
-                  <div className="grid grid-cols-2 gap-6 mb-8">
-                    <div className="text-center">
-                      <div className="text-3xl font-bold bg-gradient-to-r from-pink-400 to-blue-400 bg-clip-text text-transparent">
-                        50+
-                      </div>
-                      <div className="text-white/70 text-sm">Projects Delivered</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-                        100%
-                      </div>
-                      <div className="text-white/70 text-sm">Client Satisfaction</div>
-                    </div>
-                  </div>
-                  
-                  <div className="h-40 bg-gradient-to-br from-pink-500/20 to-blue-500/20 rounded-2xl flex items-center justify-center">
-                    <div className="w-20 h-20 bg-gradient-to-r from-pink-500 to-blue-500 rounded-full animate-pulse-glow flex items-center justify-center text-2xl">
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <img 
+                src="/stocktech.jpg" 
+                alt="Creative Trade Solutions Team" 
+                className="w-full h-96 object-cover"
+              />
             </div>
           </div>
         </div>
@@ -786,28 +781,28 @@ export default function Home() {
               What Clients Say
             </h2>
             <p className="text-xl text-white/70 max-w-3xl mx-auto">
-              Don't just take our word for it. Here's what our clients have to say about working with us.
+              Don&apos;t just take our word for it. Here&apos;s what our clients have to say about working with us.
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                name: "Sarah Johnson",
-                role: "CEO, TechStart",
-                content: "Creative Trade Solutions transformed our digital presence completely. The results exceeded our expectations.",
+                name: "Manuel",
+                role: "Founder, Novus Remodeling",
+                content: "Creative Trade Solutions transformó por completo nuestra presencia digital. Nos ayudó no solo a captar nuevos clientes potenciales, sino también a convertirlos en clientes.",
                 rating: 5
               },
               {
-                name: "Mike Chen",
-                role: "Founder, GrowthCo",
-                content: "Professional, creative, and results-driven. They delivered exactly what we needed to scale our business.",
+                name: "Pablo",
+                role: "Founder, Camino Concepts",
+                content: "Professional, creative, and results-driven. They delivered exactly what we needed to scale our business and add some professionalism to our brand.",
                 rating: 5
               },
               {
-                name: "Lisa Rodriguez",
-                role: "Marketing Director",
-                content: "The attention to detail and modern approach made all the difference. Highly recommend their services.",
+                name: "Lalos",
+                role: "Founder, Lalos Carpentry",
+                content: "The attention to detail and modern approach made all the difference. Highly recommend their services. They represented us well and made us look very professional.",
                 rating: 5
               }
             ].map((testimonial, index) => (
@@ -826,7 +821,7 @@ export default function Home() {
                   ))}
                 </div>
                 <p className="text-white/80 mb-6 italic leading-relaxed">
-                  "{testimonial.content}"
+                  &quot;{testimonial.content}&quot;
                 </p>
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 bg-gradient-to-r from-green-400 to-cyan-400 rounded-full flex items-center justify-center text-white font-bold">
@@ -843,85 +838,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="scroll-hidden relative py-24 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Testimonials
-            </h2>
-            <p className="text-xl text-white/70 max-w-3xl mx-auto">
-              What our clients say about partnering with Creative Trade Solutions.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Testimonial 1 */}
-            <div className="group relative p-6 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-500 glass-card scroll-slide-left">
-              <div className="flex items-start gap-4 mb-4">
-                <div className="w-14 h-14 rounded-full bg-gradient-to-r from-cyan-400 to-blue-400 flex items-center justify-center text-xl text-white font-bold">
-                  AB
-                </div>
-                <div>
-                  <div className="flex items-center gap-2 mb-1">
-                    <h4 className="text-lg font-bold text-white">Ava Brooks</h4>
-                    <span className="text-white/50 text-sm">• CEO, Nova Retail</span>
-                  </div>
-                  <div className="flex items-center gap-1 text-sm" style={{color: '#D4AF37'}}>
-                    <span>★★★★★</span>
-                  </div>
-                </div>
-              </div>
-              <p className="text-white/80 leading-relaxed">
-                "Creative Trade rebuilt our online store and tripled conversion rates in three months. Their strategic approach and attention to detail are unmatched."
-              </p>
-            </div>
-
-            {/* Testimonial 2 */}
-            <div className="group relative p-6 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-500 glass-card scroll-slide-up">
-              <div className="flex items-start gap-4 mb-4">
-                <div className="w-14 h-14 rounded-full bg-gradient-to-r from-purple-400 to-pink-400 flex items-center justify-center text-xl text-white font-bold">
-                  MJ
-                </div>
-                <div>
-                  <div className="flex items-center gap-2 mb-1">
-                    <h4 className="text-lg font-bold text-white">Marcus Jin</h4>
-                    <span className="text-white/50 text-sm">• Head of Marketing, GrowthLabs</span>
-                  </div>
-                  <div className="flex items-center gap-1 text-sm" style={{color: '#D4AF37'}}>
-                    <span>★★★★★</span>
-                  </div>
-                </div>
-              </div>
-              <p className="text-white/80 leading-relaxed">
-                "Their marketing and SEO work delivered measurable results — organic traffic and qualified leads increased dramatically. Highly recommended."
-              </p>
-            </div>
-
-            {/* Testimonial 3 */}
-            <div className="group relative p-6 rounded-2xl backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-500 glass-card scroll-slide-right">
-              <div className="flex items-start gap-4 mb-4">
-                <div className="w-14 h-14 rounded-full bg-gradient-to-r from-green-400 to-emerald-400 flex items-center justify-center text-xl text-white font-bold">
-                  RS
-                </div>
-                <div>
-                  <div className="flex items-center gap-2 mb-1">
-                    <h4 className="text-lg font-bold text-white">Rita Sanchez</h4>
-                    <span className="text-white/50 text-sm">• Product Manager, FinanceFlow</span>
-                  </div>
-                  <div className="flex items-center gap-1 text-sm" style={{color: '#D4AF37'}}>
-                    <span>★★★★★</span>
-                  </div>
-                </div>
-              </div>
-              <p className="text-white/80 leading-relaxed">
-                "The team brought our mobile product to life with beautiful UX and rock-solid performance. Support during launch was exceptional."
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
+      
       {/* Enhanced Contact Section */}
       <section 
         id="contact" 
@@ -935,14 +852,14 @@ export default function Home() {
         </div>
         
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-20 scroll-slide-left">
+            <div className="text-center mb-20 scroll-slide-left">
             <h2 className="text-5xl md:text-7xl font-bold mb-8 animate-text-glow text-white">
-              Let's Create
+              Let&apos;s Create
               <br />
               Something Amazing
             </h2>
             <p className="text-2xl text-white/70 max-w-3xl mx-auto leading-relaxed">
-              Ready to transform your business? Let's discuss your project and launch it into the digital cosmos.
+              Ready to transform your business? Let&apos;s discuss your project and launch it into the digital cosmos.
             </p>
           </div>
           
@@ -956,7 +873,7 @@ export default function Home() {
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-white">Email Us</h3>
-                    <p className="text-cyan-300">hello@creativetrade.com</p>
+                    <p className="text-cyan-300">Adrain@creativetrade.com</p>
                   </div>
                 </div>
               </div>
@@ -968,22 +885,12 @@ export default function Home() {
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-white">Call Us</h3>
-                    <p className="text-green-300">+1 (555) 123-4567</p>
+                    <p className="text-green-300">+1 (954) 870-8668</p>
                   </div>
                 </div>
               </div>
               
-              <div className="glass-card p-6 rounded-2xl magnetic-element hover:bg-white/10 transition-all duration-500">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-2xl">
-                    🌍
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-white">Visit Us</h3>
-                    <p className="text-purple-300">San Francisco, CA</p>
-                  </div>
-                </div>
-              </div>
+             
               
               <div className="glass-card p-6 rounded-2xl magnetic-element hover:bg-white/10 transition-all duration-500">
                 <div className="flex items-center gap-4 mb-4">
@@ -1008,7 +915,7 @@ export default function Home() {
                   <h3 className="text-3xl font-bold mb-4 bg-gradient-to-r white bg-clip-text text-transparent">
                     Send us a message
                   </h3>
-                  <p className="text-white/70">Fill out the form below and we'll get back to you as soon as possible.</p>
+                  <p className="text-white/70">Fill out the form below and we&apos;ll get back to you as soon as possible.</p>
                 </div>
                 
                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -1088,9 +995,9 @@ export default function Home() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                       </svg>
                     </button>
-                    <div className="flex items-center gap-3 text-white/60">
+                      <div className="flex items-center gap-3 text-white/60">
                       <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-                      <span className="text-sm">We'll respond within 24 hours</span>
+                      <span className="text-sm">We&apos;ll respond within 24 hours</span>
                     </div>
                   </div>
                 </form>

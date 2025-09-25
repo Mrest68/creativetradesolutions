@@ -20,7 +20,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning={true}>
       <body
         className={`${interFont.variable} ${jetBrainsMono.variable} antialiased font-sans overflow-x-hidden`}
       >
@@ -63,9 +63,9 @@ export default function RootLayout({ children }) {
               <div className="hidden md:flex items-center gap-1 bg-white/5 backdrop-blur-xl rounded-none px-2 py-2 border border-white/10">
                 <a href="/services" className="px-6 py-2 text-white/80 hover:text-white hover:bg-white/10 rounded-none transition-all duration-300 font-medium">Services</a>
                 <a href="/projects" className="px-6 py-2 text-white/80 hover:text-white hover:bg-white/10 rounded-none transition-all duration-300 font-medium">Projects</a>
-                <a href="#about" className="px-6 py-2 text-white/80 hover:text-white hover:bg-white/10 rounded-none transition-all duration-300 font-medium">About</a>
+                
                 <a href="/get-started" className="px-6 py-2 text-white/80 hover:text-white hover:bg-white/10 rounded-none transition-all duration-300 font-medium">Get Started</a>
-                <a href="#contact" className="px-6 py-2 bg-gradient-to-r from-cyan-500 to-purple-500 text-white rounded-none hover:from-cyan-400 hover:to-purple-400 transition-all duration-300 font-medium shadow-lg">Contact</a>
+                <a href="tel:+19548708668" className="px-6 py-2 bg-gradient-to-r from-cyan-500 to-purple-500 text-white rounded-none hover:from-cyan-400 hover:to-purple-400 transition-all duration-300 font-medium shadow-lg">Contact</a>
               </div>
               
               {/* Mobile Menu Button */}
