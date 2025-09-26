@@ -307,6 +307,56 @@ export default function Home() {
           
           {/* Automatic Horizontal Carousel */}
           <div className="relative group">
+            {/* Mobile: simple swipeable horizontal list */}
+            <div className="md:hidden overflow-x-auto -mx-6 px-6">
+              <div className="flex gap-6 pb-6">
+                {[
+                  {
+                    title: "Camino Concepts",
+                    category: "Remodeling Services/Handyman Services",
+                    image: "web1.jpg",
+                    gradient: "from-cyan-500 to-blue-600"
+                  },
+                  {
+                    title: "Novus Remodeling",
+                    category: "Remodeling Services/Handyman Services",
+                    image: "web2.jpg",
+                    gradient: "from-purple-500 to-pink-600"
+                  },
+                  {
+                    title: "Lalos Carpentry",
+                    category: "Carpentry Services",
+                    image: "web3.jpg",
+                    gradient: "from-green-500 to-cyan-600"
+                  },
+                  {
+                    title: "Storm Pros Florida",
+                    category: "Roofing / Impact Doors and Windows",
+                    image: "web4.png",
+                    gradient: "from-cyan-500 to-blue-600"
+                  }
+                ].map((project, index) => (
+                  <div key={`mobile-${index}`} className="flex-shrink-0 w-64 sm:w-72 group cursor-pointer">
+                    <div className="glass-card overflow-hidden transform transition-all duration-500 hover:scale-105 hover:shadow-2xl border border-white/10">
+                      <div className="relative h-44 overflow-hidden">
+                        <Image
+                          src={`/${project.image}`}
+                          alt={project.title}
+                          fill
+                          className="object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                      </div>
+                      <div className="p-4">
+                        <h3 className="text-lg font-bold text-black mb-1">{project.title}</h3>
+                        <p className="text-white/70 text-sm">{project.category}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
             {/* Animated carousel for md+ */}
             <div className="hidden md:block overflow-hidden">
               <div className="flex gap-8 animate-[scroll-carousel_40s_linear_infinite]" style={{

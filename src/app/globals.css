@@ -798,6 +798,15 @@ body {
 }
 
 /* Ensure hover/interactive variants using those utility classes also show orange */
+
+/* Make animate-on-scroll visible by default on small screens so content is not hidden
+   if IntersectionObserver fails or delays on mobile devices */
+@media (max-width: 640px) {
+  .animate-on-scroll, .scroll-hidden {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
 [class*="hover:text-cyan"],
 [class*="hover:text-purple"],
 [class*="hover:text-pink"],

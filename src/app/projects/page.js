@@ -177,19 +177,35 @@ export default function ProjectsPage() {
 
       {/* Projects Column Layout */}
   <section className="relative py-20 px-4 sm:px-6">
-        <div className="max-w-7xl mx-auto space-y-40">
+        <div className="max-w-7xl mx-auto space-y-24 sm:space-y-40">
           {projects.map((project, index) => (
             <div
               key={project.id}
-              className={`animate-on-scroll opacity-0 transition-all duration-1000 ease-out ${
+              className={`animate-on-scroll sm:opacity-0 opacity-100 sm:translate-y-10 translate-y-0 transition-all duration-1000 ease-out overflow-hidden ${
                 index % 2 === 0 
                   ? 'lg:translate-x-[-100px]' 
                   : 'lg:translate-x-[100px]'
               }`}
               style={{ transitionDelay: `${index * 200}ms` }}
             >
+              {/* Mobile compact header: show title + button to reveal project on phones */}
+              <div className="sm:hidden flex items-center justify-between bg-black/50 rounded-xl p-4 mb-4">
+                <div>
+                  <div className="text-lg font-semibold">{project.title}</div>
+                  <div className="text-xs text-white/60">{project.category}</div>
+                </div>
+                <div>
+                  <button
+                    onClick={() => setOpenFolder(openFolder === project.id ? null : project.id)}
+                    className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-purple-500 px-4 py-2 rounded-full text-sm font-semibold"
+                  >
+                    {openFolder === project.id ? 'Close' : 'View Project'}
+                  </button>
+                </div>
+              </div>
+
               {/* Modern Column Layout */}
-              <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${
+              <div className={`${openFolder === project.id ? 'grid' : 'hidden sm:grid'} grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${
                 index % 2 === 0 ? 'lg:grid-flow-col' : 'lg:grid-flow-col-dense'
               }`}>
                 
@@ -197,10 +213,10 @@ export default function ProjectsPage() {
                 <div className={`relative group ${index % 2 === 0 ? 'lg:order-1' : 'lg:order-2'}`}>
                   <div className="relative">
                     {/* Dramatic Glow Effect */}
-                    <div className={`absolute -inset-6 bg-gradient-to-r ${project.color} rounded-3xl blur-2xl opacity-20 group-hover:opacity-40 transition-opacity duration-700`}></div>
+                    <div className={`absolute -inset-2 sm:-inset-6 bg-gradient-to-r ${project.color} rounded-3xl blur-2xl opacity-20 group-hover:opacity-40 transition-opacity duration-700`}></div>
                     
                     {/* Main Image Container */}
-                    <div className="relative aspect-[4/3] rounded-3xl overflow-hidden backdrop-blur-xl border border-white/20 group-hover:border-white/40 transition-all duration-700"
+        <div className="relative aspect-[16/9] sm:aspect-[4/3] rounded-3xl overflow-hidden backdrop-blur-xl border border-white/20 group-hover:border-white/40 transition-all duration-700"
                          style={{
                            background: `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.1) 100%)`,
                            boxShadow: '0 25px 50px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
@@ -249,6 +265,15 @@ export default function ProjectsPage() {
                 {/* Project Content */}
                 <div className={`relative ${index % 2 === 0 ? 'lg:order-2' : 'lg:order-1'}`}>
                   <div className="space-y-8">
+                    {/* Mobile-only close action (also shown in header) */}
+                    <div className="sm:hidden flex justify-end">
+                      <button
+                        onClick={() => setOpenFolder(null)}
+                        className="text-sm text-white/70 px-3 py-1 rounded hover:bg-white/5"
+                      >
+                        Close
+                      </button>
+                    </div>
                     {/* Project Header */}
                     <div>
                       <h2 className={`text-2xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r ${project.color} bg-clip-text text-transparent tracking-tight leading-tight`}>
