@@ -158,11 +158,11 @@ export default function ServicesPage() {
         })}
       </div>
 
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 px-6">
+  {/* Hero Section */}
+  <section className="relative pt-36 md:pt-32 pb-20 px-6">
         <div className="max-w-7xl mx-auto text-center">
           <div className={`transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <h1 className="text-5xl md:text-8xl font-bold mb-8 leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-bold mb-8 leading-snug md:leading-tight">
               <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient-shift">
                 Digital Excellence
               </span>

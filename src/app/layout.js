@@ -57,7 +57,7 @@ export default function RootLayout({ children }) {
         
         {/* Modern Navigation */}
         <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-black backdrop-blur-xl border-b border-white/10">
-          <nav className="max-w-7xl mx-auto px-6 py-6 ">
+          <nav className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 md:py-6">
             <div className="flex items-center justify-between">
               {/* Home icon (left) */}
               <div className="flex items-center">
@@ -83,7 +83,8 @@ export default function RootLayout({ children }) {
           </nav>
         </header>
 
-        {children}
+        {/* Add top padding so fixed header doesn't overlap content on small screens */}
+        <main className="pt-16 sm:pt-20 md:pt-24">{children}</main>
       </body>
     </html>
   );

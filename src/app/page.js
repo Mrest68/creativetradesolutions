@@ -224,7 +224,7 @@ export default function Home() {
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
       {/* Left: Header, text, buttons */}
       <div className="text-left">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight text-black">
+        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold mb-6 leading-tight sm:leading-tight text-black">
           Creative <span className="text-cyan-400">Trade</span>
           <br />
           Solutions
