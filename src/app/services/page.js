@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function ServicesPage() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -210,7 +211,7 @@ export default function ServicesPage() {
                   <div className={`absolute ${index % 2 === 0 ? 'right-0' : 'left-0'} top-0 bottom-0 w-1 bg-gradient-to-b ${service.color} opacity-40 group-hover:opacity-80 transition-opacity duration-500`}></div>
                   
                   {/* Card Content - Horizontal Layout */}
-                  <div className="relative z-10 p-10">
+                  <div className="relative z-10 p-6 sm:p-10">
                     <div className={`flex items-center gap-10 ${index % 2 === 0 ? 'flex-row-reverse' : 'flex-row'}`}>
                       
                       {/* Service Icon Container */}
@@ -218,28 +219,34 @@ export default function ServicesPage() {
                         {service.id === 'digital-marketing' && service.icon && service.icon2 ? (
                           <div className="flex gap-6 items-center">
                             <div className="relative">
-                              <img 
-                                src={`/${service.icon}`} 
+                              <Image
+                                src={`/${service.icon}`}
                                 alt={service.title}
-                                className="w-32 h-32 object-contain filter drop-shadow-2xl hover:scale-110 hover:rotate-3 transition-all duration-500"
+                                width={128}
+                                height={128}
+                                className="w-20 h-20 sm:w-32 sm:h-32 object-contain filter drop-shadow-2xl hover:scale-110 hover:rotate-3 transition-all duration-500"
                               />
                               <div className="absolute -inset-4 bg-gradient-to-br from-pink-500/20 to-purple-500/20 rounded-full blur-xl opacity-0 hover:opacity-100 transition-opacity duration-500"></div>
                             </div>
                             <div className="relative">
-                              <img 
-                                src={`/${service.icon2}`} 
+                              <Image
+                                src={`/${service.icon2}`}
                                 alt={service.title}
-                                className="w-32 h-32 object-contain filter drop-shadow-2xl hover:scale-110 hover:-rotate-3 transition-all duration-500"
+                                width={128}
+                                height={128}
+                                className="w-20 h-20 sm:w-32 sm:h-32 object-contain filter drop-shadow-2xl hover:scale-110 hover:-rotate-3 transition-all duration-500"
                               />
                               <div className="absolute -inset-4 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-full blur-xl opacity-0 hover:opacity-100 transition-opacity duration-500"></div>
                             </div>
                           </div>
                         ) : service.icon && (
                           <div className="relative">
-                            <img 
-                              src={`/${service.icon}`} 
+                            <Image
+                              src={`/${service.icon}`}
                               alt={service.title}
-                              className="w-40 h-40 object-contain filter drop-shadow-2xl hover:scale-110 hover:rotate-3 transition-all duration-500"
+                              width={160}
+                              height={160}
+                              className="w-24 h-24 sm:w-40 sm:h-40 object-contain filter drop-shadow-2xl hover:scale-110 hover:rotate-3 transition-all duration-500"
                             />
                             <div className={`absolute -inset-6 bg-gradient-to-br ${service.bgGradient} opacity-0 hover:opacity-30 rounded-full blur-xl transition-opacity duration-500`}></div>
                           </div>
@@ -264,7 +271,7 @@ export default function ServicesPage() {
                         </p>
                         
                         {/* Modern Features List */}
-                        <div className={`grid grid-cols-2 gap-3 ${index % 2 === 0 ? 'text-right' : 'text-left'}`}>
+                        <div className={`grid grid-cols-1 sm:grid-cols-2 gap-3 ${index % 2 === 0 ? 'text-right' : 'text-left'}`}>
                           {service.features.map((feature, idx) => (
                             <div key={idx} className={`flex items-center gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors duration-300 group/feature ${index % 2 === 0 ? 'flex-row-reverse' : 'flex-row'}`}>
                               <div className={`w-1.5 h-1.5 rounded-full bg-gradient-to-r ${service.color} shadow-lg group-hover/feature:scale-125 transition-transform duration-300`}

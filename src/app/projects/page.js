@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function ProjectsPage() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -104,10 +105,10 @@ export default function ProjectsPage() {
       <div className="fixed inset-0 -z-10 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
         
-        {/* Dynamic Floating Orbs */}
-        <div className="absolute top-10 left-10 w-[500px] h-[500px] bg-gradient-to-r from-purple-500/15 via-cyan-500/20 to-pink-500/15 rounded-full blur-3xl animate-cosmic-drift"></div>
-        <div className="absolute bottom-10 right-10 w-[400px] h-[400px] bg-gradient-to-r from-cyan-500/15 via-emerald-500/20 to-blue-500/15 rounded-full blur-3xl animate-cosmic-drift" style={{animationDelay: '2s', animationDuration: '12s'}}></div>
-        <div className="absolute top-1/2 left-1/3 w-[300px] h-[300px] bg-gradient-to-r from-pink-500/10 via-purple-500/15 to-indigo-500/10 rounded-full blur-3xl animate-cosmic-drift" style={{animationDelay: '4s', animationDuration: '15s'}}></div>
+  {/* Dynamic Floating Orbs (responsive) */}
+  <div className="absolute top-10 left-4 sm:left-10 w-40 sm:w-[500px] h-40 sm:h-[500px] bg-gradient-to-r from-purple-500/15 via-cyan-500/20 to-pink-500/15 rounded-full blur-3xl animate-cosmic-drift"></div>
+  <div className="absolute bottom-10 right-4 sm:right-10 w-36 sm:w-[400px] h-36 sm:h-[400px] bg-gradient-to-r from-cyan-500/15 via-emerald-500/20 to-blue-500/15 rounded-full blur-3xl animate-cosmic-drift" style={{animationDelay: '2s', animationDuration: '12s'}}></div>
+  <div className="absolute top-1/2 left-1/3 w-28 sm:w-[300px] h-28 sm:h-[300px] bg-gradient-to-r from-pink-500/10 via-purple-500/15 to-indigo-500/10 rounded-full blur-3xl animate-cosmic-drift" style={{animationDelay: '4s', animationDuration: '15s'}}></div>
         
         {/* Animated Grid */}
         <div className="absolute inset-0 opacity-10" style={{
@@ -155,7 +156,7 @@ export default function ProjectsPage() {
       </div>
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 px-6">
+  <section className="relative pt-32 pb-20 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto text-center">
           <div className={`transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h1 className="text-5xl md:text-8xl font-bold mb-8 leading-tight">
@@ -175,15 +176,15 @@ export default function ProjectsPage() {
       </section>
 
       {/* Projects Column Layout */}
-      <section className="relative py-20 px-6">
+  <section className="relative py-20 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto space-y-40">
           {projects.map((project, index) => (
             <div
               key={project.id}
               className={`animate-on-scroll opacity-0 transition-all duration-1000 ease-out ${
                 index % 2 === 0 
-                  ? 'translate-x-[-100px]' 
-                  : 'translate-x-[100px]'
+                  ? 'lg:translate-x-[-100px]' 
+                  : 'lg:translate-x-[100px]'
               }`}
               style={{ transitionDelay: `${index * 200}ms` }}
             >
@@ -206,7 +207,7 @@ export default function ProjectsPage() {
                          }}>
                       
                       {/* Background Gradient */}
-                      <img src={project.image} alt="Project Background" className="absolute inset-0 w-full h-full object-cover" />
+                      <Image src={`/${project.image}`} alt={`${project.title} background`} fill className="absolute inset-0 object-cover" />
                       
                       
                       {/* Project Preview Content */}
@@ -239,7 +240,7 @@ export default function ProjectsPage() {
                     </div>
                     
                     {/* Project Category Badge */}
-                    <div className={`absolute -top-4 -left-4 px-4 py-2 rounded-2xl backdrop-blur-sm border border-white/20 bg-gradient-to-r ${project.color} bg-opacity-20`}>
+                    <div className={`absolute -top-4 left-2 sm:-left-4 px-4 py-2 rounded-2xl backdrop-blur-sm border border-white/20 bg-gradient-to-r ${project.color} bg-opacity-20`}>
                       <span className="text-white font-semibold text-sm">{project.category}</span>
                     </div>
                   </div>
@@ -250,10 +251,10 @@ export default function ProjectsPage() {
                   <div className="space-y-8">
                     {/* Project Header */}
                     <div>
-                      <h2 className={`text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r ${project.color} bg-clip-text text-transparent tracking-tight leading-tight`}>
+                      <h2 className={`text-2xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r ${project.color} bg-clip-text text-transparent tracking-tight leading-tight`}>
                         {project.title}
                       </h2>
-                      <p className="text-xl text-white/80 leading-relaxed">
+                      <p className="text-base md:text-lg text-white/80 leading-relaxed">
                         {project.description}
                       </p>
                     </div>
@@ -262,8 +263,8 @@ export default function ProjectsPage() {
                     <div>
                       <h4 className="text-white/60 text-sm font-medium uppercase tracking-wider mb-4">Technologies Used</h4>
                       <div className="flex flex-wrap gap-3">
-                        {project.technologies.map((tech, idx) => (
-                          <div key={idx} className={`group relative overflow-hidden px-4 py-3 rounded-2xl text-sm font-semibold text-white border border-white/20 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-white/40`}
+                        {project.technologies.filter(Boolean).map((tech, idx) => (
+                          <div key={idx} className={`group relative overflow-hidden px-3 py-2 sm:px-4 sm:py-3 rounded-2xl text-xs sm:text-sm font-semibold text-white border border-white/20 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-white/40`}
                                style={{
                                  background: `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)`,
                                  boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)'
@@ -316,7 +317,7 @@ export default function ProjectsPage() {
 
       {/* Call to Action */}
       <section className="relative py-32 px-6">
-        <div className="max-w-4xl mx-auto text-center">
+            <div className="max-w-4xl mx-auto text-center">
           <div className="animate-on-scroll opacity-0 translate-y-10 transition-all duration-1000 ease-out">
             <h2 className="text-4xl md:text-6xl font-bold mb-8">
               <span className="text-white/90">Ready to</span>
@@ -332,7 +333,7 @@ export default function ProjectsPage() {
             
             <Link 
               href="/#contact" 
-              className="group inline-flex items-center gap-3 bg-gradient-to-r from-cyan-500 to-purple-500 px-12 py-5 rounded-full font-bold text-lg hover:from-cyan-400 hover:to-purple-400 transition-all duration-500 transform hover:scale-110 shadow-lg hover:shadow-2xl relative overflow-hidden"
+              className="group inline-flex w-full md:w-auto justify-center items-center gap-3 bg-gradient-to-r from-cyan-500 to-purple-500 px-6 md:px-12 py-3 md:py-5 rounded-full font-bold text-base md:text-lg hover:from-cyan-400 hover:to-purple-400 transition-all duration-500 transform hover:scale-110 shadow-lg hover:shadow-2xl relative overflow-hidden"
             >
               <span className="relative z-10">Let&apos;s Collaborate</span>
               <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>

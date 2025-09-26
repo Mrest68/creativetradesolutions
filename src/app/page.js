@@ -220,17 +220,17 @@ export default function Home() {
         </div>
         
   {/* Hero content with scroll animations — two-column */}
-  <div className={`max-w-7xl mx-auto px-6 transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+  <div className={`max-w-7xl mx-auto px-4 sm:px-6 transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
       {/* Left: Header, text, buttons */}
       <div className="text-left">
-        <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight text-black">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight text-black">
           Creative <span className="text-cyan-400">Trade</span>
           <br />
           Solutions
         </h1>
 
-        <p className="text-lg md:text-xl text-gray-700 mb-6 max-w-2xl">
+  <p className="text-base md:text-lg lg:text-xl text-gray-700 mb-6 max-w-2xl">
           Transform your business with cutting-edge marketing strategies and modern digital experiences.
           We build sleek, high-converting websites and campaigns that drive measurable results.
         </p>
@@ -262,14 +262,14 @@ export default function Home() {
         <div className="flex flex-col sm:flex-row gap-4">
           <a
             href="#services"
-            className="inline-flex items-center gap-3 px-8 py-4 rounded-none font-semibold text-lg bg-black text-white border-2 border-black hover:bg-gray-900 transition"
+            className="inline-flex w-full sm:w-auto justify-center items-center gap-3 px-6 py-3 rounded-none font-semibold text-base sm:text-lg bg-black text-white border-2 border-black hover:bg-gray-900 transition"
           >
             Explore Services
           </a>
 
           <a
             href="#contact"
-            className="inline-flex items-center gap-3 px-8 py-4 rounded-none font-semibold text-lg bg-white text-black border-2 border-black hover:bg-gray-100 transition"
+            className="inline-flex w-full sm:w-auto justify-center items-center gap-3 px-6 py-3 rounded-none font-semibold text-base sm:text-lg bg-white text-black border-2 border-black hover:bg-gray-100 transition"
           >
             Start Project
           </a>
@@ -277,8 +277,8 @@ export default function Home() {
       </div>
 
       {/* Right: Image (carpenter.jpg) */}
-      <div className="w-full flex items-center justify-center">
-        <div className="w-full h-80 md:h-96 lg:h-[34rem] rounded-lg overflow-hidden border border-gray-200">
+      <div className="w-full flex items-center justify-center mt-6 md:mt-0">
+        <div className="w-full h-64 md:h-80 lg:h-[34rem] rounded-lg overflow-hidden border border-gray-200">
           <Image src="/carpenter.jpg" alt="Carpenter at work" width={1200} height={800} className="w-full h-full object-cover" />
         </div>
       </div>
@@ -307,10 +307,10 @@ export default function Home() {
           
           {/* Automatic Horizontal Carousel */}
           <div className="relative group">
-            <div className="overflow-hidden">
-              <div className="flex gap-8" style={{
-                animation: 'scroll-carousel 40s linear infinite',
-                width: 'calc(400px * 12)' // 6 items * 2 sets
+            {/* Animated carousel for md+ */}
+            <div className="hidden md:block overflow-hidden">
+              <div className="flex gap-8 animate-[scroll-carousel_40s_linear_infinite]" style={{
+                width: 'calc(384px * 8)'
               }}
               onMouseEnter={(e) => e.target.style.animationPlayState = 'paused'}
               onMouseLeave={(e) => e.target.style.animationPlayState = 'running'}
@@ -343,14 +343,15 @@ export default function Home() {
                   }
                   
                 ].map((project, index) => (
-                  <div key={`set1-${index}`} className="flex-shrink-0 w-96 group cursor-pointer magnetic-element">
+                  <div key={`set1-${index}`} className="flex-shrink-0 w-64 sm:w-72 md:w-96 group cursor-pointer magnetic-element">
                     <div className="glass-card overflow-hidden transform transition-all duration-500 hover:scale-105 hover:shadow-2xl border border-white/10">
                       {/* Project Image */}
                       <div className="relative h-64 overflow-hidden">
                         <Image 
-                          src={project.image} 
+                          src={`/${project.image}`} 
                           alt={project.title}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                          fill
+                          className="object-cover group-hover:scale-110 transition-transform duration-700"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                         <div className="absolute top-4 right-4">
@@ -409,14 +410,15 @@ export default function Home() {
                     gradient: "from-cyan-500 to-blue-600"
                   }
                 ].map((project, index) => (
-                  <div key={`set2-${index}`} className="flex-shrink-0 w-96 group cursor-pointer magnetic-element">
+                  <div key={`set2-${index}`} className="flex-shrink-0 w-64 sm:w-72 md:w-96 group cursor-pointer magnetic-element">
                     <div className="glass-card overflow-hidden transform transition-all duration-500 hover:scale-105 hover:shadow-2xl border border-white/10">
                       {/* Project Image */}
                       <div className="relative h-64 overflow-hidden">
                         <Image 
-                          src={project.image} 
+                          src={`/${project.image}`} 
                           alt={project.title}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                          fill
+                          className="object-cover group-hover:scale-110 transition-transform duration-700"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                         <div className="absolute top-4 right-4">
@@ -516,11 +518,11 @@ export default function Home() {
                 We partner with you through a focused 4-step process designed to discover your needs, craft a tailored strategy, build delightful experiences, and launch with measurable results.
               </p>
 
-              <div className="flex gap-4 mt-4">
-                <a href="#contact" className="inline-flex items-center px-6 py-3 bg-black text-white border-2 border-black rounded-none font-semibold hover:bg-gray-900 transition">
+              <div className="flex flex-col sm:flex-row gap-4 mt-4">
+                <a href="#contact" className="inline-flex w-full sm:w-auto justify-center items-center px-6 py-3 bg-black text-white border-2 border-black rounded-none font-semibold hover:bg-gray-900 transition">
                   Start a Project
                 </a>
-                <a href="#services" className="inline-flex items-center px-6 py-3 border-2 border-black text-black rounded-none font-semibold hover:bg-black hover:text-white transition">
+                <a href="#services" className="inline-flex w-full sm:w-auto justify-center items-center px-6 py-3 border-2 border-black text-black rounded-none font-semibold hover:bg-black hover:text-white transition">
                   View Services
                 </a>
               </div>
@@ -609,11 +611,12 @@ export default function Home() {
             </div>
             
             {/* Right: Visual Element */}
-            <div className={`relative ${isLoaded ? 'animate-slide-in-right' : ''}`}>
+            <div className={`relative h-72 sm:h-96 ${isLoaded ? 'animate-slide-in-right' : ''}`}>
               <Image 
                 src="/funnel.png" 
                 alt="Creative Trade Solutions Team" 
-                className="w-full h-96 object-cover"
+                fill
+                className="object-cover"
               />
             </div>
           </div>
