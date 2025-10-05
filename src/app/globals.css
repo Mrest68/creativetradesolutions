@@ -196,6 +196,15 @@
   }
 }
 
+@keyframes scroll-reviews {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-320px * 5 - 24px * 5)); /* Move by width of 5 review items + gaps */
+  }
+}
+
 @keyframes carousel-fade-in {
   from {
     opacity: 0;
