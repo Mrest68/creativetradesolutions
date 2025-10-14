@@ -54,8 +54,8 @@ export default function ServicesPage() {
       features: ['Responsive Design', 'SEO Optimized', 'Fast Loading', 'Modern UI/UX'],
       icon: 'wordpress-react.webp',
       color: 'white',
-      glowColor: 'red-500',
-      bgGradient: 'from-blue-500/10 to-red-500/10'
+      glowColor: 'cyan-500',
+      bgGradient: 'from-blue-500/10 to-cyan-500/10'
     },
     {
       id: 'seo-optimization',
@@ -77,7 +77,7 @@ export default function ServicesPage() {
       icon: 'google.png',
       color: 'white',
       glowColor: 'red-500',
-      bgGradient: 'from-red-500/10 to-red-600/10'
+      bgGradient: 'from-yellow-500/10 to-yellow-600/10'
     },
     {
       id: 'digital-marketing',
@@ -88,27 +88,27 @@ export default function ServicesPage() {
       icon: 'instagram.png',
       icon2: 'facebook.png',
       color: 'white',
-      glowColor: 'red-500',
-      bgGradient: 'from-red-500/10 to-red-600/10'
+      glowColor: 'yellow-500',
+      bgGradient: 'from-yellow-500/10 to-yellow-600/10'
     }
   ];
 
   return (
-    <div className="min-h-screen text-white relative overflow-hidden" style={{backgroundColor: '#353535'}}>
+    <div className="min-h-screen bg-black text-white relative overflow-hidden">
       {/* Custom CSS for scroll glow effect */}
       <style jsx>{`
         .scroll-glow {
           transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .glow-active {
-          box-shadow: 0 0 20px rgba(254, 86, 95, 0.2), 0 0 40px rgba(254, 86, 95, 0.15), 0 0 60px rgba(254, 86, 95, 0.1) !important;
-          border-color: rgba(254, 86, 95, 0.3) !important;
+          box-shadow: 0 0 20px rgba(212, 175, 55, 0.2), 0 0 40px rgba(212, 175, 55, 0.15), 0 0 60px rgba(212, 175, 55, 0.1) !important;
+          border-color: rgba(212, 175, 55, 0.3) !important;
         }
         .glow-active::before {
           content: '';
           position: absolute;
           inset: -1px;
-          background: linear-gradient(45deg, rgba(254, 86, 95, 0.1), rgba(220, 60, 70, 0.1), rgba(254, 86, 95, 0.1));
+          background: linear-gradient(45deg, rgba(212, 175, 55, 0.1), rgba(184, 134, 11, 0.1), rgba(212, 175, 55, 0.1));
           z-index: -1;
           filter: blur(6px);
           opacity: 1;
@@ -122,16 +122,16 @@ export default function ServicesPage() {
       
       {/* Animated Background */}
       <div className="fixed inset-0 -z-10">
-        <div className="absolute inset-0" style={{backgroundColor: '#353535'}}></div>
+        <div className="absolute inset-0 bg-black"></div>
         
         {/* Floating Orbs */}
-        <div className="absolute top-20 left-20 w-96 h-96 bg-gradient-to-r from-red-500/10 to-gray-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-80 h-80 bg-gradient-to-r from-gray-500/10 to-red-500/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
-        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-r from-red-500/5 to-gray-500/5 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
+        <div className="absolute top-20 left-20 w-96 h-96 bg-gradient-to-r from-purple-500/10 to-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-20 w-80 h-80 bg-gradient-to-r from-cyan-500/10 to-pink-500/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-r from-pink-500/5 to-purple-500/5 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
         
         {/* Grid Pattern */}
         <div className="absolute inset-0 opacity-5" style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, rgba(254, 86, 95, 0.8) 1px, transparent 0)`,
+          backgroundImage: `radial-gradient(circle at 1px 1px, cyan 1px, transparent 0)`,
           backgroundSize: '50px 50px'
         }}></div>
         
@@ -146,9 +146,8 @@ export default function ServicesPage() {
           return (
             <div
               key={`particle-${i}`}
-              className={`absolute w-1 h-1 rounded-full animate-pulse opacity-30`}
+              className={`absolute w-1 h-1 bg-cyan-400 rounded-full animate-pulse opacity-30`}
               style={{
-                backgroundColor: '#fe565f',
                 top: `${topPercent}%`,
                 left: `${leftPercent}%`,
                 animationDelay: `${delay}s`,
@@ -164,7 +163,7 @@ export default function ServicesPage() {
         <div className="max-w-7xl mx-auto text-center">
           <div className={`transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-bold mb-8 leading-snug md:leading-tight">
-              <span style={{color: '#fe565f'}}>
+              <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient-shift">
                 Digital Excellence
               </span>
               <br />
@@ -191,16 +190,16 @@ export default function ServicesPage() {
                 onMouseEnter={() => setActiveService(service.id)}
                 onMouseLeave={() => setActiveService(null)}
               >
-                <div className={`group relative overflow-hidden backdrop-blur-xl transition-all duration-700 transform hover:scale-[1.01] hover:-translate-y-1 border border-white/10 hover:border-white/30 cursor-pointer shadow-2xl hover:shadow-3xl scroll-glow ${
+                <div className={`group relative overflow-hidden backdrop-blur-xl bg-black/90 hover:bg-black/95 transition-all duration-700 transform hover:scale-[1.01] hover:-translate-y-1 border border-white/10 hover:border-white/30 cursor-pointer shadow-2xl hover:shadow-3xl scroll-glow ${
                   index % 2 === 0 ? 'mr-0 ml-auto' : 'ml-0 mr-auto'
                 } max-w-4xl`}
                      style={{
                        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
-                       background: `linear-gradient(135deg, rgba(53,53,53,0.9) 0%, rgba(73,73,73,0.95) 50%, rgba(53,53,53,0.9) 100%)`
+                       background: `linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(20,20,20,0.95) 50%, rgba(0,0,0,0.9) 100%)`
                      }}>
                   
                   {/* Scroll Glow Background */}
-                  <div className="absolute -inset-1 opacity-0 transition-all duration-1000 scroll-glow-bg" style={{background: 'linear-gradient(90deg, rgba(254, 86, 95, 0) 0%, rgba(254, 86, 95, 0.3) 50%, rgba(254, 86, 95, 0) 100%)'}}></div>
+                  <div className="absolute -inset-1 bg-gradient-to-r from-yellow-600/0 via-yellow-500/0 to-yellow-600/0 opacity-0 transition-all duration-1000 scroll-glow-bg"></div>
                   
                   {/* Modern Gradient Overlay */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${service.bgGradient} opacity-10 group-hover:opacity-20 transition-opacity duration-700`}></div>

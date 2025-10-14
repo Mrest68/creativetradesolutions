@@ -1,4 +1,3 @@
-
 "use client";
 import Image from "next/image";
 import Link from "next/link";
@@ -264,10 +263,8 @@ export default function Home() {
                         <div className="flex flex-col sm:flex-row gap-4">
                   <a
                     href="#services"
-                    className="inline-flex w-full sm:w-auto justify-center items-center gap-3 px-6 py-3 rounded-none font-semibold text-base sm:text-lg text-white border-2 transition"
+                    className="inline-flex w-full sm:w-auto justify-center items-center gap-3 px-6 py-3 rounded-none font-semibold text-base sm:text-lg text-white border-2 transition hover:opacity-90"
                     style={{backgroundColor: '#fe565f', borderColor: '#fe565f'}}
-                    onMouseEnter={(e) => e.target.style.backgroundColor = '#e4454d'}
-                    onMouseLeave={(e) => e.target.style.backgroundColor = '#fe565f'}
                   >
                     Services
                   </a>
@@ -377,11 +374,9 @@ export default function Home() {
 
             {/* Animated carousel for md+ */}
             <div className="hidden md:block overflow-hidden">
-              <div className="flex gap-8 animate-[scroll-carousel_40s_linear_infinite]" style={{
+              <div className="flex gap-8 animate-[scroll-carousel_40s_linear_infinite] hover:[animation-play-state:paused]" style={{
                 width: 'calc(384px * 8)'
               }}
-              onMouseEnter={(e) => e.target.style.animationPlayState = 'paused'}
-              onMouseLeave={(e) => e.target.style.animationPlayState = 'running'}
               >
                 {/* First set of portfolio items */}
                 {[
@@ -527,23 +522,23 @@ export default function Home() {
       <section 
         id="services" 
         ref={servicesRef}
-        className="scroll-hidden relative py-0"
+        className="scroll-hidden relative py-32 px-6"
         style={{backgroundColor: '#353535'}}
       >
-        <div className="w-full h-screen">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-stretch h-full">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* Left: Image */}
-            <div className={`relative ${isLoaded ? 'animate-slide-in-left' : ''}`}>
+            <div className={`relative h-96 lg:h-[500px] ${isLoaded ? 'animate-slide-in-left' : ''}`}>
               <Image 
                 src="/commercial-engineers-pointing-at-blueprint-sketch-scaled-1.jpg" 
                 alt="Our Services and Solutions" 
                 fill
-                className="object-cover"
+                className="object-cover rounded-lg"
               />
             </div>
             
             {/* Right: Content */}
-            <div className={`px-8 py-16 lg:px-16 lg:py-32 ${isLoaded ? 'animate-slide-in-right' : ''}`}>
+            <div className={`${isLoaded ? 'animate-slide-in-right' : ''}`}>
               {/* H3 tag above H1 */}
               <h3 className="text-lg font-normal mb-4 text-gray-300 uppercase tracking-wider">
                 Our Services
@@ -590,10 +585,8 @@ export default function Home() {
               {/* Button at the bottom */}
               <a 
                 href="#contact" 
-                className="inline-flex items-center gap-3 px-8 py-4 rounded-none font-normal text-lg text-white border-2 transition-colors"
+                className="inline-flex items-center gap-3 px-8 py-4 rounded-none font-normal text-lg text-white border-2 transition-colors hover:opacity-90"
                 style={{backgroundColor: '#fe565f', borderColor: '#fe565f'}}
-                onMouseEnter={(e) => e.target.style.backgroundColor = '#e4454d'}
-                onMouseLeave={(e) => e.target.style.backgroundColor = '#fe565f'}
               >
                 <span>Get Started</span>
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -675,10 +668,8 @@ export default function Home() {
           <div className="text-center">
             <a 
               href="#contact" 
-              className="inline-flex items-center gap-3 px-8 py-4 rounded-none font-normal text-lg text-white border-2 transition-colors"
+              className="inline-flex items-center gap-3 px-8 py-4 rounded-none font-normal text-lg text-white border-2 transition-colors hover:opacity-90"
               style={{backgroundColor: '#fe565f', borderColor: '#fe565f'}}
-              onMouseEnter={(e) => e.target.style.backgroundColor = '#e4454d'}
-              onMouseLeave={(e) => e.target.style.backgroundColor = '#fe565f'}
             >
               <span>Start a Project</span>
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -824,12 +815,10 @@ export default function Home() {
           <div className="relative group">
             <div className="overflow-hidden">
               <div 
-                className="flex gap-6 animate-[scroll-reviews_30s_linear_infinite]" 
+                className="flex gap-6 animate-[scroll-reviews_30s_linear_infinite] hover:[animation-play-state:paused]" 
                 style={{
                   width: 'calc(320px * 10)'
                 }}
-                onMouseEnter={(e) => e.target.style.animationPlayState = 'paused'}
-                onMouseLeave={(e) => e.target.style.animationPlayState = 'running'}
               >
                 {/* First set of reviews */}
                 {[
@@ -1075,10 +1064,8 @@ export default function Home() {
             </p>
             <a 
               href="#contact" 
-              className="group text-white px-8 py-4 rounded-none font-normal text-lg transition-all duration-300 border-2"
+              className="group text-white px-8 py-4 rounded-none font-normal text-lg transition-all duration-300 border-2 hover:opacity-90"
               style={{backgroundColor: '#fe565f', borderColor: '#fe565f'}}
-              onMouseEnter={(e) => e.target.style.backgroundColor = '#e4454d'}
-              onMouseLeave={(e) => e.target.style.backgroundColor = '#fe565f'}
             >
               <span>Partner With Us</span>
               <svg className="inline-block ml-2 w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1175,19 +1162,11 @@ export default function Home() {
                   {/* Button with Arrow in Bottom Right Corner */}
                   <div className="flex justify-end mt-6">
                     <button 
-                      className="group bg-transparent border-2 p-3 rounded-none transition-all duration-300"
+                      className="group bg-transparent border-2 p-3 rounded-none transition-all duration-300 hover:opacity-75"
                       style={{
                         borderColor: plan.textColor,
                         color: plan.textColor,
                         alignSelf: 'flex-end'
-                      }}
-                      onMouseEnter={(e) => {
-                        e.target.style.backgroundColor = plan.textColor;
-                        e.target.style.color = plan.bgColor;
-                      }}
-                      onMouseLeave={(e) => {
-                        e.target.style.backgroundColor = 'transparent';
-                        e.target.style.color = plan.textColor;
                       }}
                     >
                       <svg 
@@ -1289,16 +1268,8 @@ export default function Home() {
                       </svg>
                     </a>
                     <button 
-                      className="px-4 py-2 rounded-none font-normal text-white border-2 transition-all duration-300 hover:text-gray-300"
+                      className="px-4 py-2 rounded-none font-normal text-white border-2 transition-all duration-300 hover:opacity-90"
                       style={{backgroundColor: '#1a1a1a', borderColor: '#1a1a1a'}}
-                      onMouseEnter={(e) => {
-                        e.target.style.backgroundColor = '#000000';
-                        e.target.style.color = 'white';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.target.style.backgroundColor = '#1a1a1a';
-                        e.target.style.color = 'white';
-                      }}
                     >
                       Learn More
                     </button>
@@ -1334,10 +1305,8 @@ export default function Home() {
                     <div className="flex items-center gap-4">
                       <a 
                         href="#" 
-                        className="inline-flex items-center gap-3 px-6 py-3 rounded-none font-normal text-lg text-white border-2 transition-colors"
+                        className="inline-flex items-center gap-3 px-6 py-3 rounded-none font-normal text-lg text-white border-2 transition-colors hover:opacity-90"
                         style={{backgroundColor: '#fe565f', borderColor: '#fe565f'}}
-                        onMouseEnter={(e) => e.target.style.backgroundColor = '#e4454d'}
-                        onMouseLeave={(e) => e.target.style.backgroundColor = '#fe565f'}
                       >
                         <span>Read Full Guide</span>
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1368,10 +1337,8 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <a 
               href="mailto:Adrian@creativetrade.com" 
-              className="inline-flex items-center gap-3 px-6 py-3 rounded-none font-normal text-lg text-white border-2 transition-colors"
+              className="inline-flex items-center gap-3 px-6 py-3 rounded-none font-normal text-lg text-white border-2 transition-colors hover:opacity-90"
               style={{backgroundColor: '#fe565f', borderColor: '#fe565f'}}
-              onMouseEnter={(e) => e.target.style.backgroundColor = '#e4454d'}
-              onMouseLeave={(e) => e.target.style.backgroundColor = '#fe565f'}
             >
               Email Us
             </a>

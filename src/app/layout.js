@@ -1,5 +1,6 @@
 import { Inter, JetBrains_Mono } from "next/font/google";
 import MobileNav from '../components/MobileNav';
+import CTAButton from '../components/CTAButton';
 import Link from 'next/link';
 import "./globals.css";
 
@@ -50,13 +51,7 @@ export default function RootLayout({ children }) {
                 <Link href="/#contact" className="px-6 py-2 text-white/90 rounded-none transition-all duration-300 font-medium pb-2 border-b-2 border-transparent hover:border-white">Contact</Link>
                 
                 {/* CTA Button */}
-                <Link 
-                  href="/#contact" 
-                  className="ml-4 px-6 py-2 rounded-none font-medium text-white border-2 transition-all duration-300 hover:bg-[#e4454d]"
-                  style={{backgroundColor: '#ff5760', borderColor: '#ff5760'}}
-                >
-                  Get Started
-                </Link>
+                <CTAButton />
               </div>
               
               {/* Mobile Menu Button */}
