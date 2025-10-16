@@ -737,7 +737,7 @@ export default function Home() {
               Our Process
             </h1>
             <p className="text-xl text-gray-300 font-light leading-relaxed max-w-3xl mx-auto">
-              Simple, transparent, and effective. Here's how we work together to grow your business.
+              Simple, transparent, and effective. Here&apos;s how we work together to grow your business.
             </p>
           </div>
 
@@ -753,7 +753,7 @@ export default function Home() {
                   Initial Call<br/>(15-30 mins)
                 </h3>
                 <p className="text-gray-300 font-light leading-relaxed">
-                  We'll sort through what your goals are with your business, answer any questions you have, and choose what plan works for you.
+                  We&apos;ll sort through what your goals are with your business, answer any questions you have, and choose what plan works for you.
                 </p>
               </div>
             </div>
@@ -782,7 +782,7 @@ export default function Home() {
                   We Build Your System<br/>(7-14 days)
                 </h3>
                 <p className="text-gray-300 font-light leading-relaxed">
-                  We'll send you a document which asks you questions about your business so we have all the information we need to start building your system. Once we get that info from you, we'll get started.
+                  We&apos;ll send you a document which asks you questions about your business so we have all the information we need to start building your system. Once we get that info from you, we&apos;ll get started.
                 </p>
               </div>
             </div>
@@ -811,7 +811,7 @@ export default function Home() {
                   Launch Call<br/>(20 mins)
                 </h3>
                 <p className="text-gray-300 font-light leading-relaxed">
-                  We'll walk you through your website, google business profile, and social media. Any questions you may have will be answered, and of course, now it is time for the system to grow.
+                  We&apos;ll walk you through your website, google business profile, and social media. Any questions you may have will be answered, and of course, now it is time for the system to grow.
                 </p>
               </div>
             </div>
@@ -890,7 +890,7 @@ export default function Home() {
                       
                       {/* Review content */}
                       <p className="text-gray-700 text-sm leading-relaxed mb-4 flex-grow">
-                        "{review.content}"
+                        &quot;{review.content}&quot;
                       </p>
                       
                       {/* Client info */}
@@ -953,7 +953,7 @@ export default function Home() {
                       
                       {/* Review content */}
                       <p className="text-gray-700 text-sm leading-relaxed mb-4 flex-grow">
-                        "{review.content}"
+                        &quot;{review.content}&quot;
                       </p>
                       
                       {/* Client info */}

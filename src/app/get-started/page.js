@@ -396,7 +396,7 @@ export default function GetStarted() {
               What Our Clients Say
             </h2>
             <p className="text-xl text-white/70">
-              Don't just take our word for it - hear from businesses we've helped grow
+              Don&apos;t just take our word for it - hear from businesses we&apos;ve helped grow
             </p>
           </div>
 
